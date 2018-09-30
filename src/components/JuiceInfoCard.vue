@@ -53,9 +53,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .juice-info-card {
-  background-color: pink;
-  margin-top: 200px;
+  box-shadow: 0 10px 40px rgba(51, 66, 150, 0.2);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 200px auto 40px;
   height: 600px;
+  max-width: 400px;
   width: 100%;
   h1 {
     padding-top: 60px;
