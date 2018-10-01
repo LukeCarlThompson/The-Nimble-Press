@@ -136,33 +136,29 @@ export default {
   },
   methods: {
     onPan(e) {
+      // select the svg inside our component not the whole component
       var thisBottle = this.$el.querySelector('svg');
 
-      //Add in animation to go back to their proper position on drag end
+      //set z-index so this bottle is in front all the rest
+      this.$el.style.zIndex = '1';
 
-      // this applies some resistance, an easing function would be nice
-      var rotate = (e.deltaX * 0.1);
+      // tone down the movement input then apply it to the bottle
+      var rotate = (e.deltaX * 0.06);
+      thisBottle.style.transform = "rotate(" + rotate + "deg) translateY(5px) scale(1.03)";
 
-      // thisBottle.style.transform = "rotate(" + (posX * 0.4) + "deg) translateX("+ posX * 0.5 +"px)";
-      thisBottle.style.transform = "rotate(" + rotate + "deg)";
-
-      // drag end
+      // this prop turns true when draggin has finished
       if (e.isFinal) {
-        console.log('final', e);
-        this.$el.isDragging = false;
         if(e.distance > 40 && e.additionalEvent == "panright") {
           this.$emit('incrementCounter');
-          // animate back to proper position
         } else if (e.distance > 40 && e.additionalEvent == "panleft") {
           this.$emit('decrementCounter');
-          // animate back to proper position
         }
+        this.$el.style.zIndex = '0';
         anime({
           targets: thisBottle,
           rotate: 0,
-          // easing: 'easeInOutCubic',
           duration: 1000,
-          delay: 100,
+          delay: 0,
         });
       }
     },
@@ -175,7 +171,6 @@ export default {
   svg {
     max-width: 100%;
     transform-origin: 50% 200%;
-    // transition: transform 3s cubic-bezier(0, 0.5, 0, 1);
   }
 }
 .top-color {
