@@ -1,6 +1,7 @@
 <template>
     <svg :class="['juice-bottle', bottlePosition, juiceColor]"
       :style="gradientColors"
+      v-on:click="$emit('incrementCounter')"
       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="130" height="200" viewBox="0 0 130 250">
         <defs>
           <filter id="filter-1" width="133%" height="117.2%" x="-16.5%" y="-6%" filterUnits="objectBoundingBox">

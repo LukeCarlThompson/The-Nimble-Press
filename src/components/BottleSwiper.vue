@@ -1,5 +1,5 @@
 <template>
-  <div class="bottle-swiper-wrap" v-on:click="counter += 1">
+  <div class="bottle-swiper-wrap">
       <!-- <li class="list-item" v-for="juice in juices" :key="juice.name">
         <JuiceBottle :juiceColor="juice.color"/>
       </li> -->
@@ -7,6 +7,7 @@
       <!-- <JuiceBottle v-for="(juice, i) in juices" :juiceColor="juices[i].color" :key="i"/> -->
       <JuiceBottle
         v-for="(juice, i) in juices"
+        v-on:incrementCounter="counter += 1"
         :juiceColor="juice.color"
         :bottlePosition="bottlePosition(i)"
         :juiceName="juice.name"
