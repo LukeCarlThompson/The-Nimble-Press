@@ -1,7 +1,7 @@
 <template>
     <svg :class="['juice-bottle', bottlePosition, juiceColor]"
       :style="gradientColors"
-      v-on:click="$emit('incrementCounter')"
+      v-hammer:swipe.horizontal="onSwipe"
       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="130" height="200" viewBox="0 0 130 250">
         <defs>
           <filter id="filter-1" width="133%" height="117.2%" x="-16.5%" y="-6%" filterUnits="objectBoundingBox">
@@ -138,17 +138,30 @@ export default {
 			  '--bottom-color': this.juiceColor.bottom
       }
     }
+  },
+  methods: {
+    onSwipe(e) {
+      console.log('swipe detected', e.direction);
+      if(e.direction == 4) {
+        console.log('Right')
+        this.$emit('incrementCounter')
+      }
+      if(e.direction == 2) {
+        console.log('Left')
+        this.$emit('decrementCounter')
+      }
+      // this.$emit('incrementCounter')
+    },
   }
 };
 </script>
 
 <style scoped lang="scss">
-  .top-color {
-    stop-color: var(--top-color);
-  }
-  .bottom-color {
-    stop-color: var(--bottom-color);
-  }
-
+.top-color {
+  stop-color: var(--top-color);
+}
+.bottom-color {
+  stop-color: var(--bottom-color);
+}
 </style>
 

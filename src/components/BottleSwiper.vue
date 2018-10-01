@@ -8,6 +8,7 @@
       <JuiceBottle
         v-for="(juice, i) in juices"
         v-on:incrementCounter="counter += 1"
+        v-on:decrementCounter="counter -= 1"
         :juiceColor="juice.color"
         :bottlePosition="bottlePosition(i)"
         :juiceName="juice.name"
@@ -140,7 +141,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .bottle-swiper-wrap {
-  overflow: auto; // this stops margin collapse from the card element
+  overflow: hidden; // this stops margin collapse from the card element
   position: relative;
 }
 
