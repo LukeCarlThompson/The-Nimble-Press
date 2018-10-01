@@ -64,10 +64,7 @@ export default {
             'ingedient 02',
             'ingredient 03'
           ],
-          color: {
-            top: "#F6D663",
-            bottom: "#F77C1C"
-          },
+          color: 'orange',
         },
         {
           name: 'Green Juice',
@@ -76,10 +73,7 @@ export default {
             'ingedient 02',
             'ingredient 03'
           ],
-          color: {
-            top: "#B4EC51",
-            bottom: "#429321"
-          },
+          color: 'green',
         },
         {
           name: 'Red Juice',
@@ -88,10 +82,7 @@ export default {
             'ingedient 02',
             'ingredient 03'
           ],
-          color: {
-            top: "#FDA0A8",
-            bottom: "#DF0B2B"
-          },
+          color: 'red',
         },
         {
           name: 'Purple Juice',
@@ -100,10 +91,7 @@ export default {
             'ingedient 02',
             'ingredient 03'
           ],
-          color: {
-            top: "#A664B1",
-            bottom: "#473E9D"
-          },
+          color: 'purple',
         },
         {
           name: 'Purple Juice 02',
@@ -112,10 +100,7 @@ export default {
             'ingedient 02',
             'ingredient 03'
           ],
-          color: {
-            top: "#A664B1",
-            bottom: "#473E9D"
-          },
+          color: 'purple',
         },
         {
           name: 'Purple Juice 03',
@@ -124,10 +109,7 @@ export default {
             'ingedient 02',
             'ingredient 03'
           ],
-          color: {
-            top: "#A664B1",
-            bottom: "#473E9D"
-          },
+          color: 'purple',
         }
       ],
     };
@@ -138,9 +120,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .bottle-swiper-wrap {
-  max-width: 600px;
-  height: 500px;
-  border: 1px solid pink;
+  overflow: auto; // this stops margin collapse from the card element
   position: relative;
 }
 
@@ -150,7 +130,7 @@ export default {
   position: absolute;
   transition: transform 0.5s cubic-bezier(0.5, 0.5, 0, 0.7);
   transform-origin: 50% 20%;
-  top: 0;
+  top: 10px;
   right: 0;
 }
 

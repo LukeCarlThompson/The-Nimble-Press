@@ -1,8 +1,11 @@
 <template>
-    <svg class="juice-bottle"
-    v-bind:class="bottlePosition" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="130" height="230" viewBox="0 0 130 230">
+    <svg :class="['juice-bottle', bottlePosition, juiceColor]"
+     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="130" height="200" viewBox="0 0 130 250">
+      <title>
+        Juice bottle color fill
+      </title>
       <defs>
-        <filter id="filter-1" width="133%" height="117.2%" x="-16.5%" y="-6%" filterUnits="objectBoundingBox">
+        <filter id="filter-1" width="130.2%" height="115.3%" x="-15.1%" y="-5.5%" filterUnits="objectBoundingBox">
           <feOffset dy="5" in="SourceAlpha" result="shadowOffsetOuter1"/>
           <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="5"/>
           <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
@@ -11,10 +14,10 @@
             <feMergeNode in="SourceGraphic"/>
           </feMerge>
         </filter>
-        <path id="path-2" d="M35.33 0C35.33 23.66 0 13.14 0 43.38v143.27c0 13.15 106 13.15 106 0V43.38C106 13.14 70.67 23.66 70.67 0H35.33z"/>
+        <path id="path-2" d="M38.67 0C38.67 25.92 0 14.4 0 47.53v156.99c0 14.4 116 14.4 116 0v-157C116 14.4 77.33 25.93 77.33 0H38.67z"/>
         <linearGradient id="linearGradient-4" x1="50%" x2="50%" y1="0%" y2="100%">
-          <stop offset="0%" :stop-color="juiceColor.top"/>
-          <stop offset="100%" :stop-color="juiceColor.bottom"/>
+          <stop offset="0%" stop-color="#C4C4C4"/>
+          <stop offset="100%" stop-color="#616161"/>
         </linearGradient>
         <linearGradient id="linearGradient-5" x1="0%" x2="79.82%" y1="40.97%" y2="40.97%">
           <stop offset="0%" stop-color="#55DFFF" stop-opacity="0"/>
@@ -26,13 +29,13 @@
           <stop offset="29.23%" stop-color="#FFF" stop-opacity=".55"/>
           <stop offset="100%" stop-color="#FFF" stop-opacity="0"/>
         </linearGradient>
-        <path id="path-7" d="M-3.93-2.63h115.16V199.8H-3.93z"/>
-        <radialGradient id="radialGradient-8" cx="29.05%" cy="18.64%" r="86.61%" fx="29.05%" fy="18.64%" gradientTransform="matrix(.48654 .84605 -.87366 .47116 .31 -.15)">
+        <path id="path-7" d="M-4.3-2.88h126.02v221.8H-4.3z"/>
+        <radialGradient id="radialGradient-8" cx="29.05%" cy="18.64%" r="88.46%" fx="29.05%" fy="18.64%" gradientTransform="matrix(.47636 .82835 -.87925 .44878 .32 -.14)">
           <stop offset="0%" stop-color="#CEAAF4"/>
           <stop offset="50.84%" stop-color="#9C75C5"/>
           <stop offset="100%" stop-color="#5C3586"/>
         </radialGradient>
-        <ellipse id="path-9" cx="8.26" cy="8.53" rx="8.26" ry="8.53"/>
+        <ellipse id="path-9" cx="8.97" cy="9.52" rx="8.97" ry="9.52"/>
         <linearGradient id="linearGradient-11" x1="50%" x2="62.81%" y1="0%" y2="67.01%">
           <stop offset="0%" stop-color="#9FE3DA"/>
           <stop offset="56.36%" stop-color="#66C2B3"/>
@@ -43,57 +46,56 @@
           <stop offset="56.36%" stop-color="#66C2B3"/>
           <stop offset="100%" stop-color="#45AA99"/>
         </linearGradient>
-        <path id="path-13" d="M.53 6.8h1.05v.42c.24-.2.46-.33.65-.41.2-.08.4-.12.6-.12.41 0 .77.14 1.06.43.24.25.36.61.36 1.1v2.75H3.21V9.14c0-.5-.02-.83-.06-1a.68.68 0 0 0-.24-.37.66.66 0 0 0-.41-.12c-.22 0-.4.07-.55.2-.16.15-.26.35-.32.6-.03.13-.05.41-.05.85v1.67H.53V6.8zm5.15-1.72c.19 0 .35.06.48.2.13.13.2.3.2.48 0 .19-.07.35-.2.48a.64.64 0 0 1-.47.2.65.65 0 0 1-.48-.2.67.67 0 0 1-.2-.5c0-.18.07-.34.2-.47.13-.13.29-.2.47-.2zM5.16 6.8H6.2v4.17H5.16V6.8zm2 0H8.2v.48a1.76 1.76 0 0 1 1.32-.59 1.34 1.34 0 0 1 1.22.75 1.68 1.68 0 0 1 2.2-.55c.23.15.39.33.49.55.1.22.15.58.15 1.08v2.45h-1.06V8.86c0-.48-.06-.8-.18-.97-.12-.16-.3-.25-.53-.25a.81.81 0 0 0-.49.16.9.9 0 0 0-.31.42c-.07.18-.1.47-.1.87v1.88H9.84V8.95c0-.37-.03-.64-.08-.81a.73.73 0 0 0-.25-.38.66.66 0 0 0-.4-.12.8.8 0 0 0-.48.16.93.93 0 0 0-.32.43c-.07.19-.1.48-.1.89v1.85H7.15V6.8zm8.48-1.61v2.07a1.78 1.78 0 0 1 1.33-.57c.54 0 1 .2 1.39.62.38.41.57.94.57 1.58 0 .63-.2 1.15-.6 1.56a1.87 1.87 0 0 1-2.07.5c-.21-.08-.42-.22-.62-.42v.44h-1.05V5.2h1.05zm1.1 2.47c-.33 0-.6.11-.82.34-.22.22-.33.51-.33.88s.1.67.33.9c.22.23.5.34.82.34.32 0 .6-.11.81-.35.22-.23.33-.53.33-.89s-.1-.65-.32-.88a1.08 1.08 0 0 0-.82-.34zm2.95-2.47h1.06v5.78h-1.06V5.2zm6.21 4h-3.38c.05.3.18.53.4.7.2.18.47.27.8.27.4 0 .73-.14 1.02-.41l.88.41a2.1 2.1 0 0 1-.79.7c-.3.15-.67.22-1.1.22-.66 0-1.2-.2-1.6-.62a2.1 2.1 0 0 1-.63-1.55c0-.64.2-1.17.62-1.59.41-.42.93-.63 1.55-.63.66 0 1.2.21 1.62.63.4.42.62.98.62 1.67v.2zm-1.05-.83c-.07-.23-.21-.42-.42-.56a1.2 1.2 0 0 0-.7-.22c-.3 0-.56.08-.78.24-.14.1-.27.29-.38.54h2.28zM1.58 13.2v.46a1.78 1.78 0 0 1 1.33-.57c.54 0 1 .2 1.39.62.38.4.58.94.58 1.58 0 .62-.2 1.14-.6 1.56a1.87 1.87 0 0 1-2.08.5c-.21-.08-.42-.22-.62-.42v1.97H.53v-5.7h1.05zm1.1.86c-.33 0-.6.1-.82.33-.22.23-.33.52-.33.89s.11.67.33.9c.22.23.5.34.82.34.33 0 .6-.12.82-.35.22-.23.33-.53.33-.89s-.11-.65-.33-.88a1.08 1.08 0 0 0-.82-.34zm2.82-.86h.9v.52c.1-.2.23-.36.4-.47a.94.94 0 0 1 .95-.05l-.33.9a.73.73 0 0 0-.3-.1c-.16 0-.3.1-.41.3-.11.2-.17.6-.17 1.18v1.9H5.5v-4.18zm6.98 2.39H9.09c.05.3.18.53.4.7.2.18.48.27.8.27.4 0 .74-.14 1.02-.41l.89.41a2.1 2.1 0 0 1-.8.7c-.3.14-.67.22-1.1.22-.65 0-1.19-.2-1.6-.62a2.1 2.1 0 0 1-.62-1.55c0-.64.2-1.17.62-1.6.4-.41.93-.62 1.55-.62.66 0 1.2.2 1.61.63.41.42.62.98.62 1.67v.2zm-1.06-.83c-.07-.23-.2-.42-.41-.57a1.2 1.2 0 0 0-.71-.22c-.3 0-.55.09-.77.25-.14.1-.27.28-.39.54h2.28zm4.48-.98l-.65.65c-.27-.26-.5-.4-.73-.4a.46.46 0 0 0-.27.08.22.22 0 0 0-.1.19c0 .05.02.1.06.15.04.05.15.11.31.2l.39.19c.4.2.69.4.84.6.15.22.22.46.22.74 0 .37-.13.68-.4.93-.28.25-.65.37-1.1.37-.62 0-1.1-.24-1.47-.71l.65-.7c.12.14.26.25.43.34.17.09.31.13.44.13.14 0 .25-.03.34-.1.08-.06.12-.14.12-.23 0-.16-.15-.32-.46-.47l-.35-.18c-.68-.34-1.02-.76-1.02-1.27 0-.33.13-.62.39-.85.25-.24.58-.35.98-.35a1.71 1.71 0 0 1 1.38.69zm3.47 0l-.65.65c-.26-.26-.5-.4-.72-.4a.46.46 0 0 0-.28.08.22.22 0 0 0-.1.19c0 .05.02.1.07.15.04.05.14.11.31.2l.39.19c.4.2.68.4.83.6.15.22.23.46.23.74 0 .37-.14.68-.41.93-.27.25-.64.37-1.1.37-.61 0-1.1-.24-1.47-.71l.65-.7c.12.14.27.25.43.34.17.09.32.13.45.13s.25-.03.33-.1c.09-.06.13-.14.13-.23 0-.16-.15-.32-.46-.47l-.36-.18c-.67-.34-1.01-.76-1.01-1.27 0-.33.12-.62.38-.85.26-.24.58-.35.98-.35a1.71 1.71 0 0 1 1.38.69zM.38.1H1V1h.36v.52H1v1.91H.38V1.53H.07V1h.31V.1zM1.7.06h.61v1.19c.12-.1.24-.18.37-.23a.94.94 0 0 1 .36-.08c.25 0 .45.08.62.25.14.15.21.36.21.64v1.61h-.6V2.37c0-.28-.02-.47-.04-.57a.4.4 0 0 0-.14-.23.39.39 0 0 0-.24-.07.46.46 0 0 0-.32.12.65.65 0 0 0-.19.34c-.02.07-.03.24-.03.5v.98h-.6V.06zM6.91 2.4H4.94c.02.17.1.3.22.41.13.1.29.15.48.15.23 0 .42-.07.59-.23l.52.24c-.13.18-.29.31-.47.4-.18.09-.39.13-.64.13a1.23 1.23 0 0 1-1.3-1.27c0-.37.12-.68.36-.92.24-.25.55-.37.9-.37.4 0 .7.12.95.37.24.24.36.57.36.97v.12zm-.62-.48a.61.61 0 0 0-.24-.33.7.7 0 0 0-.41-.13.74.74 0 0 0-.45.14.8.8 0 0 0-.23.32H6.3z"/>
+        <path id="path-13" d="M.57 7.51H1.7v.47c.26-.22.5-.37.7-.46.21-.08.43-.13.64-.13.45 0 .83.16 1.15.48.26.28.4.68.4 1.2v3.06H3.45V10.1c0-.56-.02-.92-.07-1.1a.75.75 0 0 0-.26-.42.7.7 0 0 0-.44-.14.83.83 0 0 0-.6.24c-.16.15-.27.37-.34.65-.03.14-.05.45-.05.94v1.85H.57V7.5zm5.55-1.9a.74.74 0 0 1 .73.76c0 .2-.07.38-.21.53a.68.68 0 0 1-.5.21.75.75 0 0 1-.73-.76c-.01-.2.06-.38.2-.52a.69.69 0 0 1 .51-.22zm-.57 1.9H6.7v4.62H5.55V7.5zm2.16 0h1.14v.53a1.85 1.85 0 0 1 1.42-.65 1.42 1.42 0 0 1 1.31.84 1.77 1.77 0 0 1 2.37-.6c.24.15.42.35.52.6.1.24.16.64.16 1.2v2.7H13.5V9.79c0-.53-.06-.88-.2-1.07-.12-.18-.3-.27-.56-.27-.2 0-.37.05-.52.17a1 1 0 0 0-.35.46c-.07.2-.11.52-.11.97v2.08h-1.14V9.89c0-.41-.03-.7-.1-.9a.81.81 0 0 0-.26-.4.7.7 0 0 0-.43-.14.84.84 0 0 0-.51.17c-.16.11-.27.27-.35.48-.08.2-.11.53-.11.98v2.05H7.7V7.5zm9.13-1.78v2.3a1.88 1.88 0 0 1 1.43-.63c.59 0 1.09.22 1.5.68.41.45.62 1.04.62 1.75 0 .69-.21 1.26-.64 1.72a2 2 0 0 1-2.24.56c-.23-.1-.45-.25-.67-.47v.49H15.7v-6.4h1.13zm1.19 2.73c-.36 0-.65.13-.89.38-.23.25-.35.57-.35.97 0 .41.12.74.35 1 .24.25.53.38.89.38.35 0 .64-.13.87-.39.24-.26.36-.58.36-.98s-.12-.72-.35-.98a1.14 1.14 0 0 0-.88-.38zm3.18-2.73h1.13v6.4h-1.13v-6.4zm6.68 4.43h-3.64c.05.32.2.59.42.78.23.2.52.29.88.29.42 0 .79-.15 1.09-.45l.96.45a2.27 2.27 0 0 1-2.04 1.02 2.31 2.31 0 0 1-2.4-2.4c0-.7.22-1.3.66-1.76.45-.46 1-.7 1.67-.7.72 0 1.3.24 1.74.7.45.47.67 1.08.67 1.85v.22zm-1.13-.92a1.16 1.16 0 0 0-.45-.62 1.26 1.26 0 0 0-.76-.25c-.32 0-.6.1-.83.28-.15.1-.3.3-.42.6h2.46zM1.7 14.57v.51a1.88 1.88 0 0 1 1.43-.63c.59 0 1.09.23 1.5.69.41.45.62 1.04.62 1.75 0 .69-.21 1.26-.64 1.72a2 2 0 0 1-2.24.56c-.23-.1-.45-.25-.67-.47v2.18H.57v-6.3H1.7zm1.2.95c-.37 0-.66.13-.9.38-.23.25-.35.57-.35.97 0 .41.12.74.35 1 .24.25.53.38.9.38.34 0 .63-.13.87-.39.23-.26.35-.58.35-.98s-.12-.72-.35-.98a1.14 1.14 0 0 0-.88-.38zm3.02-.95h.97v.58c.11-.22.25-.4.42-.52a1 1 0 0 1 1.04-.06l-.35 1a.77.77 0 0 0-.33-.1c-.18 0-.32.1-.45.33-.12.22-.18.65-.18 1.3V19.19H5.93v-4.62zm7.52 2.65H9.79c.06.32.2.59.43.78.22.2.52.29.87.29.42 0 .79-.15 1.1-.45l.95.45a2.27 2.27 0 0 1-2.04 1.02 2.31 2.31 0 0 1-2.4-2.4c0-.7.22-1.3.66-1.76.45-.46 1-.7 1.68-.7.7 0 1.29.24 1.73.7.45.47.67 1.08.67 1.85v.22zm-1.14-.92a1.16 1.16 0 0 0-.44-.62 1.26 1.26 0 0 0-.77-.25c-.32 0-.6.1-.83.28-.15.1-.29.3-.42.6h2.46zm4.82-1.08l-.7.72c-.29-.3-.55-.44-.78-.44a.48.48 0 0 0-.3.09.25.25 0 0 0-.04.37c.05.06.16.13.34.22l.42.2c.43.23.74.45.9.68.16.23.24.5.24.81 0 .41-.14.75-.44 1.03-.3.27-.69.4-1.18.4-.66 0-1.19-.25-1.58-.78l.7-.78c.13.16.28.29.46.39.18.1.34.14.48.14.15 0 .27-.03.36-.1.1-.08.14-.17.14-.26 0-.18-.17-.35-.5-.52l-.38-.2c-.73-.38-1.1-.85-1.1-1.41 0-.37.14-.68.42-.94.27-.26.62-.39 1.05-.39a1.8 1.8 0 0 1 1.5.77zm3.74 0l-.7.72c-.28-.3-.54-.44-.78-.44a.48.48 0 0 0-.3.09.25.25 0 0 0-.03.37c.04.06.15.13.33.22l.42.2c.44.23.74.45.9.68.16.23.25.5.25.81 0 .41-.15.75-.45 1.03-.3.27-.69.4-1.18.4-.66 0-1.19-.25-1.58-.78l.7-.78c.13.16.29.29.46.39.18.1.34.14.48.14.15 0 .27-.03.36-.1.1-.08.14-.17.14-.26 0-.18-.17-.35-.5-.52l-.38-.2c-.73-.38-1.1-.85-1.1-1.41 0-.37.14-.68.42-.94.27-.26.63-.39 1.06-.39a1.8 1.8 0 0 1 1.48.77zM.41.12h.66v.99h.4v.58h-.4V3.8H.41V1.7H.08v-.58H.4v-1zM1.82.07h.66v1.31c.13-.11.26-.2.4-.26a.99.99 0 0 1 .39-.08c.26 0 .48.1.66.28.15.16.23.4.23.7V3.8h-.65V2.62c0-.31-.02-.52-.05-.63a.44.44 0 0 0-.14-.25.41.41 0 0 0-.26-.08.49.49 0 0 0-.35.13c-.1.1-.16.22-.2.38-.02.08-.03.26-.03.55V3.8h-.66V.07zm5.62 2.58H5.32c.03.2.1.34.24.46.13.11.3.17.51.17.25 0 .46-.1.64-.27l.56.27a1.32 1.32 0 0 1-1.2.6 1.35 1.35 0 0 1-1.4-1.41c0-.41.14-.75.4-1.02.25-.27.58-.41.97-.41.42 0 .75.14 1.01.4.26.28.4.64.4 1.08v.13zm-.66-.53a.68.68 0 0 0-.26-.37.74.74 0 0 0-.45-.14.78.78 0 0 0-.48.16.88.88 0 0 0-.25.35h1.44z"/>
       </defs>
-      <g id="Juice-bottle" fill="none" fill-rule="evenodd">
-        <g id="Juice-bottle-with-label" transform="translate(12 11)">
+      <g id="Juice-bottle-color-fill" fill="none" fill-rule="evenodd">
+        <g id="Juice-bottle-Copy-10" transform="translate(7 1)">
           <g id="Juice-bottle" filter="url(#filter-1)">
-            <g id="Group" transform="translate(0 11.83)">
+            <g id="Group" transform="translate(0 12.96)">
               <mask id="mask-3" fill="#fff">
                 <use xlink:href="#path-2"/>
               </mask>
               <use id="Bottle" fill="#D8D8D8" fill-rule="nonzero" xlink:href="#path-2"/>
-              <g id="Orange-Juice" fill="url(#linearGradient-4)" fill-rule="nonzero" mask="url(#mask-3)">
-                <path id="Juice-Color" d="M0 0h115v180H0z" transform="translate(-3.93 19.72)"/>
-              </g>
+              <path id="Juice-Color" class="juice-color-fill" fill-rule="nonzero" d="M-4.3 21.6h126.02v197.31H-4.3z" mask="url(#mask-3)"/>
+              <path id="Juice-Luma" fill="url(#linearGradient-4)" fill-rule="nonzero" d="M-4.3 21.6h126.02v197.31H-4.3z" mask="url(#mask-3)" style="mix-blend-mode:luminosity"/>
               <g id="Glass-sheen" fill-rule="nonzero" mask="url(#mask-3)">
                 <use fill="url(#linearGradient-5)" fill-opacity=".75" xlink:href="#path-7"/>
-                <use style="mix-blend-mode:screen" fill="url(#linearGradient-6)" xlink:href="#path-7"/>
+                <use fill="url(#linearGradient-6)" style="mix-blend-mode:screen" xlink:href="#path-7"/>
               </g>
             </g>
-            <path id="Path-2" fill="#4A4A4A" fill-rule="nonzero" d="M28.79 3.94c0-5.25 48.42-5.25 48.42 0v9.2H28.79v-9.2z"/>
+            <path id="Path-2" fill="#4A4A4A" fill-rule="nonzero" d="M31.5 4.32c0-5.76 53-5.76 53 0V14.4h-53V4.32z"/>
           </g>
-          <g id="Bottle-label" transform="translate(15.7 64.4)">
-            <path id="Combined-Shape" fill="#FFF" fill-rule="nonzero" d="M13.35 0h50.5c1 0 1.37.12 1.74.35.37.23.65.57.85 1 .2.42.3.85.3 2.02V84.7c0 1.17-.1 1.6-.3 2.02-.2.43-.48.77-.85 1-.37.23-.73.35-1.73.35h-50.5c-1 0-1.37-.12-1.74-.35a2.25 2.25 0 0 1-.85-1c-.2-.42-.3-.85-.3-2.02V3.37c0-1.17.1-1.6.3-2.03.2-.42.48-.76.85-.99.37-.23.73-.35 1.73-.35z"/>
-            <g id="Ingredients-list" fill="#D8D8D8" fill-rule="nonzero" transform="translate(22.25 32.86)">
-              <path id="Rectangle-4" d="M0 0h31.41v5.26H0z"/>
-              <path id="Rectangle-4-Copy" d="M0 9.2h26.17v2.63H0z"/>
-              <path id="Rectangle-4-Copy-2" d="M0 15.77h28.79v2.63H0z"/>
-              <path id="Rectangle-4-Copy-3" d="M0 22.35h32.72v2.63H0z"/>
-              <path id="Rectangle-4-Copy-4" d="M0 28.92h31.41v2.63H0z"/>
-              <path id="Rectangle-4-Copy-5" d="M0 35.49h34.02v2.63H0z"/>
-              <path id="Rectangle-4-Copy-6" d="M0 42.06h28.79v2.63H0z"/>
+          <g id="Bottle-label" transform="translate(17 71)">
+            <path id="Combined-Shape" fill="#FFF" fill-rule="nonzero" d="M14.55 0h55.02c1.1 0 1.5.13 1.9.39.4.25.7.62.92 1.1.21.46.33.93.33 2.22v89.55c0 1.3-.12 1.76-.33 2.23-.21.48-.53.85-.93 1.1-.4.25-.8.39-1.89.39H14.55c-1.1 0-1.49-.14-1.89-.4-.4-.24-.71-.61-.93-1.09a4.85 4.85 0 0 1-.32-2.23V3.71c0-1.29.11-1.76.32-2.23.22-.47.53-.84.93-1.1.4-.25.8-.38 1.9-.38z"/>
+            <g id="Ingredients-list" fill="#D8D8D8" fill-rule="nonzero" transform="translate(24.24 36.18)">
+              <path id="Rectangle-4" d="M0 0h34.22v5.79H0z"/>
+              <path id="Rectangle-4-Copy" d="M0 10.13h28.52v2.89H0z"/>
+              <path id="Rectangle-4-Copy-2" d="M0 17.37h31.37v2.89H0z"/>
+              <path id="Rectangle-4-Copy-3" d="M0 24.61h35.65v2.89H0z"/>
+              <path id="Rectangle-4-Copy-4" d="M0 31.84h34.22v2.89H0z"/>
+              <path id="Rectangle-4-Copy-5" d="M0 39.08h37.07v2.89H0z"/>
+              <path id="Rectangle-4-Copy-6" d="M0 46.32h31.37v2.89H0z"/>
             </g>
-            <g id="Logo" transform="translate(0 3.94)">
+            <g id="Logo" transform="translate(0 4.34)">
               <g id="Logo-type-Copy-3">
                 <g id="Logo-Copy-4">
-                  <g id="Fruit" transform="translate(2.86 8.7)">
+                  <g id="Fruit" transform="translate(3.1 9.7)">
                     <mask id="mask-10" fill="#fff">
                       <use xlink:href="#path-9"/>
                     </mask>
                     <g id="Oval" fill-rule="nonzero">
                       <use fill="url(#radialGradient-8)" xlink:href="#path-9"/>
-                      <use style="mix-blend-mode:color" fill="#F56F23" xlink:href="#path-9"/>
+                      <use fill="#F56F23" style="mix-blend-mode:color" xlink:href="#path-9"/>
                     </g>
-                    <path style="mix-blend-mode:multiply" id="Path-3-Copy-3" fill="#A9A9A9" fill-rule="nonzero" d="M15.1-4.68C10.37-5.95 7.58.4 9.8 5.64 15.84 4 17.57-2.64 15.1-4.68z" mask="url(#mask-10)"/>
-                    <path style="mix-blend-mode:multiply" id="Path-3-Copy-4" fill="#A9A9A9" fill-rule="nonzero" d="M1.75 1.4c-4.08 0-6.05 6.17-2.47 10.24C2.98 7.95 4.46 2.73 1.75 1.4z" mask="url(#mask-10)"/>
-                    <ellipse id="Oval-2" cx="5.56" cy="3.95" fill="#FFF" fill-rule="nonzero" mask="url(#mask-10)" rx="1.11" ry="1.15"/>
+                    <path id="Path-3-Copy-3" fill="#A9A9A9" fill-rule="nonzero" d="M16.39-5.22C11.25-6.64 8.22.43 10.63 6.3c6.56-1.85 8.44-9.23 5.76-11.5z" mask="url(#mask-10)" style="mix-blend-mode:multiply"/>
+                    <path id="Path-3-Copy-4" fill="#A9A9A9" fill-rule="nonzero" d="M1.9 1.56C-2.53 1.56-4.67 8.44-.79 13c4.02-4.12 5.63-9.95 2.7-11.43z" mask="url(#mask-10)" style="mix-blend-mode:multiply"/>
+                    <ellipse id="Oval-2" cx="6.03" cy="4.4" fill="#FFF" fill-rule="nonzero" mask="url(#mask-10)" rx="1.21" ry="1.28"/>
                   </g>
-                  <path id="Path-3" fill="url(#linearGradient-11)" fill-rule="nonzero" d="M17.58 3.4c-4.73-1.26-7.51 4.99-5.3 10.17 6.04-1.63 7.76-8.17 5.3-10.18z"/>
-                  <path id="Path-3-Copy-2" fill="url(#linearGradient-11)" fill-rule="nonzero" d="M10.67 1C6.98-.85 1.43 4.12 3.56 9.15c5.66-.98 9.8-6.34 7.11-8.13z" transform="rotate(8 7.3 4.87)"/>
-                  <path id="Path-3-Copy" fill="url(#linearGradient-12)" fill-rule="nonzero" d="M4.34 9.85c-4.08 0-6.05 6.13-2.48 10.18 3.7-3.67 5.18-8.86 2.48-10.18z"/>
+                  <path id="Path-3" fill="url(#linearGradient-11)" fill-rule="nonzero" d="M19.08 3.78c-5.13-1.4-8.15 5.58-5.75 11.36 6.55-1.83 8.42-9.11 5.75-11.36z"/>
+                  <path id="Path-3-Copy-2" fill="url(#linearGradient-11)" fill-rule="nonzero" d="M11.58 1.12C7.58-.96 1.55 4.6 3.86 10.2c6.15-1.08 10.63-7.07 7.72-9.07z" transform="rotate(8 7.92 5.43)"/>
+                  <path id="Path-3-Copy" fill="url(#linearGradient-12)" fill-rule="nonzero" d="M4.7 10.99c-4.42 0-6.55 6.83-2.68 11.35 4.01-4.1 5.62-9.88 2.69-11.35z"/>
                 </g>
-                <g id="Logo/dark" transform="translate(21.4 3.76)">
+                <g id="Logo/dark" transform="translate(23.21 4.2)">
                   <mask id="mask-14" fill="#fff">
                     <use xlink:href="#path-13"/>
                   </mask>
@@ -113,14 +115,14 @@ export default {
   name: "JuiceBottle",
   // data() {
   //   return {
-  //     juiceColor: {
+  //     thisJuiceColor: {
   //       top: "#F6D663",
   //       bottom: "#F77C1C"
   //     }
   //   };
   // },
   props: {
-    juiceColor: Object,
+    juiceColor: String,
     bottlePosition: '',
   },
 };
@@ -128,7 +130,29 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
+.orange {
+  .juice-color-fill {
+    fill: #FF8B00;
+  }
 }
+
+.red {
+  .juice-color-fill {
+    fill: #B40000;
+  }
+}
+
+.purple {
+  .juice-color-fill {
+    fill: #473E9D;
+  }
+}
+
+.green {
+  .juice-color-fill {
+    fill: #359041;
+  }
+}
+
 </style>
+

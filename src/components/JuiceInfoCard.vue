@@ -9,6 +9,7 @@
             <span>Medium 350ml</span>
             <span class="price">$4.95</span>
           </div>
+          <input type="range" id="size" name="size" min="0" max="2" />
         </div>
         <ul>
           <li class="juice-ingredient" v-for="(juice, i) in juiceInfo.ingredients" :key="i">
@@ -18,16 +19,6 @@
       </div>
 
     </transition>
-
-
-<!-- <transition name="slide-fade" mode="out-in">
-  <div :key="value">
-    {{ value }}
-  </div>
-</transition> -->
-    <!-- {{juiceColor.top}}
-    {{juiceColor.bottom}}
-    <button :style="{ backgroundColor: juiceColor.bottom }"></button> -->
 
   </div>
 
@@ -54,14 +45,15 @@ export default {
 <style scoped lang="scss">
 .juice-info-card {
   box-shadow: 0 10px 40px rgba(51, 66, 150, 0.2);
+  background-color: white;
   border-radius: 10px;
   padding: 10px;
-  margin: 200px auto 40px;
+  margin: 160px auto 40px;
   height: 600px;
   max-width: 400px;
   width: 100%;
   h1 {
-    padding-top: 60px;
+    padding-top: 40px;
   }
   ul {
     padding: 0;
@@ -76,12 +68,24 @@ export default {
 
 .size-chooser {
   border: 1px solid red;
-
+  input {
+    width: 80%;
+    margin: 20px;
+  }
 }
 .size-chooser-text-wrap {
   display: flex;
   h4 {
-    margin: 0 10px;
+    font-size: 1.4rem;
+    margin: 0 auto 0 0;
+    flex: 1 0 50%;
+  }
+  span {
+    flex: 1 1 auto;
+  }
+  .price {
+    font-size: 2rem;
+    font-weight: 600;
   }
 }
 
