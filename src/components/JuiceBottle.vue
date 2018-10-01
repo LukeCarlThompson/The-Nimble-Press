@@ -112,6 +112,7 @@
 
 <script>
 import { VueHammer } from 'vue2-hammer';
+import anime from 'animejs'
 
 export default {
   name: "JuiceBottle",
@@ -140,9 +141,10 @@ export default {
       //Add in animation to go back to their proper position on drag end
 
       // this applies some resistance, an easing function would be nice
-      var posX = (e.deltaX * 0.5);
+      var rotate = (e.deltaX * 0.1);
 
-      thisBottle.style.transform = "rotate(" + (e.deltaX *0.1) + "deg) translateX("+ posX +"px)";
+      // thisBottle.style.transform = "rotate(" + (posX * 0.4) + "deg) translateX("+ posX * 0.5 +"px)";
+      thisBottle.style.transform = "rotate(" + rotate + "deg)";
 
       // drag end
       if (e.isFinal) {
@@ -154,9 +156,14 @@ export default {
         } else if (e.distance > 40 && e.additionalEvent == "panleft") {
           this.$emit('decrementCounter');
           // animate back to proper position
-        } else {
-          // put an bounce back animation in here
         }
+        anime({
+          targets: thisBottle,
+          rotate: 0,
+          // easing: 'easeInOutCubic',
+          duration: 1000,
+          delay: 100,
+        });
       }
     },
   },
@@ -164,6 +171,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.juice-bottle {
+  svg {
+    max-width: 100%;
+    transform-origin: 50% 200%;
+    // transition: transform 3s cubic-bezier(0, 0.5, 0, 1);
+  }
+}
 .top-color {
   stop-color: var(--top-color);
 }
