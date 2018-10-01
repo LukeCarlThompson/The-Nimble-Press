@@ -1,7 +1,7 @@
 <template>
-    <svg :class="['juice-bottle', bottlePosition, juiceColor]"
-      :style="gradientColors"
-      v-hammer:swipe.horizontal="onSwipe"
+  <div :class="['juice-bottle', bottlePosition, juiceColor]"
+      :style="gradientColors">
+    <svg v-hammer:pan="onPan"
       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="130" height="200" viewBox="0 0 130 250">
         <defs>
           <filter id="filter-1" width="133%" height="117.2%" x="-16.5%" y="-6%" filterUnits="objectBoundingBox">
@@ -107,20 +107,14 @@
           </g>
         </g>
       </svg>
-
+    </div>
 </template>
 
 <script>
+import { VueHammer } from 'vue2-hammer';
+
 export default {
   name: "JuiceBottle",
-  // data() {
-  //   return {
-  //     thisJuiceColor: {
-  //       top: "#F6D663",
-  //       bottom: "#F77C1C"
-  //     }
-  //   };
-  // },
   props: {
     juiceColor: Object,
     juiceName: String,
@@ -140,19 +134,32 @@ export default {
     }
   },
   methods: {
-    onSwipe(e) {
-      console.log('swipe detected', e.direction);
-      if(e.direction == 4) {
-        console.log('Right')
-        this.$emit('incrementCounter')
+    onPan(e) {
+      var thisBottle = this.$el.querySelector('svg');
+
+      //Add in animation to go back to their proper position on drag end
+
+      // this applies some resistance, an easing function would be nice
+      var posX = (e.deltaX * 0.5);
+
+      thisBottle.style.transform = "rotate(" + (e.deltaX *0.1) + "deg) translateX("+ posX +"px)";
+
+      // drag end
+      if (e.isFinal) {
+        console.log('final', e);
+        this.$el.isDragging = false;
+        if(e.distance > 40 && e.additionalEvent == "panright") {
+          this.$emit('incrementCounter');
+          // animate back to proper position
+        } else if (e.distance > 40 && e.additionalEvent == "panleft") {
+          this.$emit('decrementCounter');
+          // animate back to proper position
+        } else {
+          // put an bounce back animation in here
+        }
       }
-      if(e.direction == 2) {
-        console.log('Left')
-        this.$emit('decrementCounter')
-      }
-      // this.$emit('incrementCounter')
     },
-  }
+  },
 };
 </script>
 
