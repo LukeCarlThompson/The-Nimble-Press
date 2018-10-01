@@ -1,19 +1,19 @@
 <template>
   <div class="bottle-swiper-wrap">
-      <!-- <li class="list-item" v-for="juice in juices" :key="juice.name">
+    <!-- <li class="list-item" v-for="juice in juices" :key="juice.name">
         <JuiceBottle :juiceColor="juice.color"/>
       </li> -->
-      <!-- <li class="list-item" v-for="(data, index) in skills" :key="data.skill"> -->
-      <!-- <JuiceBottle v-for="(juice, i) in juices" :juiceColor="juices[i].color" :key="i"/> -->
-      <JuiceBottle
-        v-for="(juice, i) in juices"
-        v-on:incrementCounter="counter += 1"
-        v-on:decrementCounter="counter -= 1"
-        :juiceColor="juice.color"
-        :bottlePosition="bottlePosition(i)"
-        :juiceName="juice.name"
-        :key="juice.name"/>
-      <juiceInfoCard :juiceInfo="juiceInfo()" />
+    <!-- <li class="list-item" v-for="(data, index) in skills" :key="data.skill"> -->
+    <!-- <JuiceBottle v-for="(juice, i) in juices" :juiceColor="juices[i].color" :key="i"/> -->
+    <JuiceBottle
+      v-for="(juice, i) in juices"
+      :juice-color="juice.color"
+      :bottle-position="bottlePosition(i)"
+      :juice-name="juice.name"
+      :key="juice.name"
+      @incrementCounter="counter += 1"
+      @decrementCounter="counter -= 1"/>
+    <juiceInfoCard :juice-info="juiceInfo()" />
 
   </div>
 </template>
@@ -24,116 +24,91 @@ import JuiceBottle from "@/components/JuiceBottle.vue";
 import JuiceInfoCard from "@/components/JuiceInfoCard.vue";
 
 export default {
-  name: "bottleSwiper",
+  name: "BottleSwiper",
   components: {
     JuiceBottle,
     JuiceInfoCard
-  },
-  methods: {
-    moveBottles() {
-      this.counter += 1;
-      console.log(this.counter);
-    },
-    bottlePosition(i) {
-
-      if (this.counter == this.juices.length) {
-        this.counter = 0;
-      }
-      
-      return (this.counter + i) < 7 ? this.classes[this.counter + i ] : 'off-screen-right';
-
-    },
-  juiceInfo() {
-    return this.juices[this.counter]
-  },
   },
   data() {
     return {
       counter: 0,
       classes: [
-        'off-screen-left',
-        'far-left',
-        'left',
-        'selected',
-        'right',
-        'far-right',
-        'off-screen-right',
+        "off-screen-left",
+        "far-left",
+        "left",
+        "selected",
+        "right",
+        "far-right",
+        "off-screen-right"
       ],
       juices: [
         {
-          name: 'Orange Juice',
-          ingredients: [
-            'ingedient 01',
-            'ingedient 02',
-            'ingredient 03'
-          ],
+          name: "Orange Juice",
+          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
-            top: '#F6D663',
-            bottom: '#F77C1C',
+            top: "#F6D663",
+            bottom: "#F77C1C"
           }
         },
         {
-          name: 'Green Juice',
-          ingredients: [
-            'ingedient 01',
-            'ingedient 02',
-            'ingredient 03'
-          ],
+          name: "Green Juice",
+          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
-            top: '#B4EC51',
-            bottom: '#429321',
+            top: "#B4EC51",
+            bottom: "#429321"
           }
         },
         {
-          name: 'Red Juice',
-          ingredients: [
-            'ingedient 01',
-            'ingedient 02',
-            'ingredient 03'
-          ],
+          name: "Red Juice",
+          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
-            top: '#FDA0A8',
-            bottom: '#DF0B2B',
+            top: "#FDA0A8",
+            bottom: "#DF0B2B"
           }
         },
         {
-          name: 'Purple Juice',
-          ingredients: [
-            'ingedient 01',
-            'ingedient 02',
-            'ingredient 03'
-          ],
+          name: "Purple Juice",
+          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
-            top: '#A664B1',
-            bottom: '#473E9D',
+            top: "#A664B1",
+            bottom: "#473E9D"
           }
         },
         {
-          name: 'Purple Juice 02',
-          ingredients: [
-            'ingedient 01',
-            'ingedient 02',
-            'ingredient 03'
-          ],
+          name: "Purple Juice 02",
+          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
-            top: '#A664B1',
-            bottom: '#473E9D',
+            top: "#A664B1",
+            bottom: "#473E9D"
           }
         },
         {
-          name: 'Purple Juice 03',
-          ingredients: [
-            'ingedient 01',
-            'ingedient 02',
-            'ingredient 03'
-          ],
+          name: "Purple Juice 03",
+          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
-            top: '#A664B1',
-            bottom: '#473E9D',
+            top: "#A664B1",
+            bottom: "#473E9D"
           }
         }
-      ],
+      ]
     };
+  },
+  methods: {
+    moveBottles() {
+      this.counter += 1;
+    },
+    bottlePosition(i) {
+      if (this.counter == this.juices.length) {
+        this.counter = 0;
+      }
+
+      return this.counter + i < 7
+        ? this.classes[this.counter + i]
+        : "off-screen-right";
+    },
+    juiceInfo() {
+      return this.juices[this.counter];
+    }
   }
 };
 </script>

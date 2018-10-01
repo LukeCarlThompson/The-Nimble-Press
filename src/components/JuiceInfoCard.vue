@@ -1,7 +1,11 @@
 <template>
   <div class="juice-info-card" >
-    <transition name="slide-fade" mode="out-in">
-      <div class="juice-info" :key="juiceInfo.name">
+    <transition 
+      name="slide-fade" 
+      mode="out-in">
+      <div 
+        :key="juiceInfo.name" 
+        class="juice-info">
         <h1 class="juice-title">{{ juiceInfo.name }}</h1>
         <div class="size-chooser">
           <div class="size-chooser-text-wrap">
@@ -9,10 +13,18 @@
             <span>Medium 350ml</span>
             <span class="price">$4.95</span>
           </div>
-          <input type="range" id="size" name="size" min="0" max="2" />
+          <input 
+            id="size" 
+            type="range" 
+            name="size" 
+            min="0" 
+            max="2" >
         </div>
         <ul>
-          <li class="juice-ingredient" v-for="(juice, i) in juiceInfo.ingredients" :key="i">
+          <li 
+            v-for="(juice, i) in juiceInfo.ingredients" 
+            :key="i" 
+            class="juice-ingredient">
             {{ juice }}
           </li>
         </ul>
@@ -27,14 +39,6 @@
 <script>
 export default {
   name: "JuiceInfoCard",
-  // data() {
-  //   return {
-  //     juiceColor: {
-  //       top: "#F6D663",
-  //       bottom: "#F77C1C"
-  //     }
-  //   };
-  // },
   props: {
     juiceInfo: Object
   }
@@ -62,10 +66,6 @@ export default {
     margin: 20px auto;
   }
 }
-.juice-title {
-  
-}
-
 .size-chooser {
   border: 1px solid red;
   input {
@@ -98,7 +98,7 @@ export default {
   transition: all 1s cubic-bezier(0, 1, 0, 1);
 }
 .slide-fade-leave-active {
-  transition: all .2s linear;
+  transition: all 0.2s linear;
 }
 .slide-fade-enter {
   transform: translateY(20%) scaleY(1.1) scaleX(0.9);

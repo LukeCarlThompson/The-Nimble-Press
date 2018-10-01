@@ -9,12 +9,9 @@
 import bottleSwiper from "@/components/BottleSwiper.vue";
 
 export default {
-  name: "home",
+  name: "Home",
   components: {
     bottleSwiper
-  },
-
+  }
 };
 </script>
-
-

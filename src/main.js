@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import { VueHammer } from 'vue2-hammer';
+import { VueHammer } from "vue2-hammer";
 
 Vue.use(VueHammer);
 
