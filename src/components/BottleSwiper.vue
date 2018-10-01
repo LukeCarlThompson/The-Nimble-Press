@@ -9,6 +9,7 @@
         v-for="(juice, i) in juices"
         :juiceColor="juice.color"
         :bottlePosition="bottlePosition(i)"
+        :juiceName="juice.name"
         :key="juice.name"/>
       <juiceInfoCard :juiceInfo="juiceInfo()" />
 
@@ -64,7 +65,10 @@ export default {
             'ingedient 02',
             'ingredient 03'
           ],
-          color: 'orange',
+          color: {
+            top: '#F6D663',
+            bottom: '#F77C1C',
+          }
         },
         {
           name: 'Green Juice',
@@ -73,7 +77,10 @@ export default {
             'ingedient 02',
             'ingredient 03'
           ],
-          color: 'green',
+          color: {
+            top: '#B4EC51',
+            bottom: '#429321',
+          }
         },
         {
           name: 'Red Juice',
@@ -82,7 +89,10 @@ export default {
             'ingedient 02',
             'ingredient 03'
           ],
-          color: 'red',
+          color: {
+            top: '#FDA0A8',
+            bottom: '#DF0B2B',
+          }
         },
         {
           name: 'Purple Juice',
@@ -91,7 +101,10 @@ export default {
             'ingedient 02',
             'ingredient 03'
           ],
-          color: 'purple',
+          color: {
+            top: '#A664B1',
+            bottom: '#473E9D',
+          }
         },
         {
           name: 'Purple Juice 02',
@@ -100,7 +113,10 @@ export default {
             'ingedient 02',
             'ingredient 03'
           ],
-          color: 'purple',
+          color: {
+            top: '#A664B1',
+            bottom: '#473E9D',
+          }
         },
         {
           name: 'Purple Juice 03',
@@ -109,7 +125,10 @@ export default {
             'ingedient 02',
             'ingredient 03'
           ],
-          color: 'purple',
+          color: {
+            top: '#A664B1',
+            bottom: '#473E9D',
+          }
         }
       ],
     };
