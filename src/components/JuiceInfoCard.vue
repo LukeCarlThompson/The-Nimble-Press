@@ -55,6 +55,9 @@ export default {
   height: 600px;
   max-width: 400px;
   width: 100%;
+  @media screen and (max-width: 530px) {
+    margin: 32vw auto 40px;
+  }
   h1 {
     padding-top: 40px;
   }

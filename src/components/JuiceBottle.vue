@@ -360,7 +360,7 @@ export default {
       this.$el.style.zIndex = "2";
 
       // tone down the movement input then apply it to the bottle
-      var rotate = e.deltaX * 0.06;
+      var rotate = e.deltaX * 0.08;
       thisBottle.style.transform = "rotate(" + rotate + "deg) translateY(20%) scale(1.1)";
         
       // Had to turn off the transition because it was slowing down the movement on mobiles too much
@@ -398,9 +398,16 @@ export default {
 
 <style scoped lang="scss">
 .juice-bottle {
+  cursor: grab;
+  &:active {
+    cursor: grabbing;
+  }
   svg {
     max-width: 100%;
     transform-origin: 50% 200%;
+    @media screen and (max-width: 530px ) {
+      height: 40vw;
+    }
   }
 }
 .top-color {
