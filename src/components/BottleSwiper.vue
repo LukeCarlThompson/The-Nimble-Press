@@ -115,25 +115,19 @@ export default {
       }
     },
     bottlePosition: function(i) {
-      // if (this.counter == this.juices.length) {
-      //   this.counter = 0;
-      // }
-
+      // set the class index equal to the counter plus the bottles index from the v-for loop
       let classIndex = this.counter + i;
 
-      // return this.classes[this.counter + i];
-
+      // If the counter goes below zero make it 0 (apply first class in classes array)
       if (this.counter + i <= 0) {
         classIndex = 0;
       }
+      // If the counter goes higher than the length of the array make it 8 (apply last class in classes array)
       if (this.counter + i >= this.classes.length) {
         classIndex = 8;
       }
+      // return the appropriate class from the classes array
       return this.classes[classIndex];
-
-      // return this.counter + i < 7
-      //   ? this.classes[this.counter + i]
-      //   : "off-screen-right";
     },
     juiceInfo() {
       return this.juices[this.counter];
