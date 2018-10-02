@@ -11,8 +11,8 @@
       :bottle-position="bottlePosition(i)"
       :juice-name="juice.name"
       :key="juice.name"
-      @incrementCounter="counter += 1"
-      @decrementCounter="counter -= 1"/>
+      @incrementCounter="incrementCounter"
+      @decrementCounter="decrementCounter"/>
     <juiceInfoCard :juice-info="juiceInfo()" />
 
   </div>
@@ -33,6 +33,8 @@ export default {
     return {
       counter: 0,
       classes: [
+        "off-screen-left",
+        "off-screen-left",
         "off-screen-left",
         "far-left",
         "left",
@@ -94,17 +96,44 @@ export default {
     };
   },
   methods: {
-    moveBottles() {
-      this.counter += 1;
-    },
-    bottlePosition(i) {
-      if (this.counter == this.juices.length) {
-        this.counter = 0;
+    incrementCounter: function() {
+      // this check stops the last bottle from being swiped past the center position
+      if(this.counter >= this.classes.length - 4) {
+        console.log('increment limit reached');
+        return;
+      } else {
+        this.counter += 1;
       }
+    },
+    decrementCounter: function() {
+      // this check stops the first bottle from being swiped past the center position
+      if(this.counter <= 0) {
+        console.log('decrement limit reached');
+        return;
+      } else {
+        this.counter -= 1;
+      }
+    },
+    bottlePosition: function(i) {
+      // if (this.counter == this.juices.length) {
+      //   this.counter = 0;
+      // }
 
-      return this.counter + i < 7
-        ? this.classes[this.counter + i]
-        : "off-screen-right";
+      let classIndex = this.counter + i;
+
+      // return this.classes[this.counter + i];
+
+      if (this.counter + i <= 0) {
+        classIndex = 0;
+      }
+      if (this.counter + i >= this.classes.length) {
+        classIndex = 8;
+      }
+      return this.classes[classIndex];
+
+      // return this.counter + i < 7
+      //   ? this.classes[this.counter + i]
+      //   : "off-screen-right";
     },
     juiceInfo() {
       return this.juices[this.counter];
