@@ -357,14 +357,16 @@ export default {
       var thisBottle = this.$el.querySelector("svg");
 
       //set z-index so this bottle is in front all the rest
-      this.$el.style.zIndex = "1";
+      this.$el.style.zIndex = "2";
 
       // tone down the movement input then apply it to the bottle
       var rotate = e.deltaX * 0.06;
       thisBottle.style.transform = "rotate(" + rotate + "deg) translateY(20%) scale(1.1)";
         
-      thisBottle.style.transitionDuration = "1s";
-      thisBottle.style.transitionTimingFunction = "cubic-bezier(0, 0.5, 0, 1)";
+      // Had to turn off the transition because it was slowing down the movement on mobiles too much
+      // Maybe find another method
+      // thisBottle.style.transitionDuration = "1s";
+      // thisBottle.style.transitionTimingFunction = "cubic-bezier(0, 0.5, 0, 1)";
 
       // this prop turns true when dragging has finished
       // update counter to move bottle left or right
@@ -372,18 +374,21 @@ export default {
       // then anim it back to place
       if (e.isFinal) {
         if (e.distance > 40 && e.additionalEvent == "panright") {
-          this.$emit("incrementCounter");
+          this.$emit("pannedRight");
         } else if (e.distance > 40 && e.additionalEvent == "panleft") {
-          this.$emit("decrementCounter");
+          this.$emit("pannedLeft");
         }
-        this.$el.style.zIndex = "0";
-        thisBottle.style.transitionDuration = "0s";
+        this.$el.style.zIndex = "1";
+        // thisBottle.style.transitionDuration = "0s";
         anime({
           targets: thisBottle,
           rotate: 0,
           scale: 1,
           translateY: 0,
-          duration: 1000
+          duration: 1000,
+          complete: function() {
+            thisBottle.parentNode.style.zIndex = "0";
+          }
         });
       }
     }

@@ -6,8 +6,8 @@
       :bottle-position="bottlePosition(i)"
       :juice-name="juice.name"
       :key="juice.name"
-      @incrementCounter="incrementCounter"
-      @decrementCounter="decrementCounter"/>
+      @pannedRight="decrementCounter"
+      @pannedLeft="incrementCounter"/>
     <juiceInfoCard :juice-info="selectedJuice" />
 
   </div>
@@ -26,17 +26,15 @@ export default {
   },
   data() {
     return {
-      counter: 0,
+      counter: 3,
       classes: [
-        "off-screen-left",
-        "off-screen-left",
-        "off-screen-left",
-        "far-left",
-        "left",
-        "selected",
-        "right",
+        "off-screen-right",
         "far-right",
-        "off-screen-right"
+        "right",
+        "selected",
+        "left",
+        "far-left",
+        "off-screen-left"
       ],
       juices: [
         {
@@ -49,6 +47,14 @@ export default {
         },
         {
           name: "Green Juice",
+          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
+          color: {
+            top: "#B4EC51",
+            bottom: "#429321"
+          }
+        },
+        {
+          name: "Green Juice 02",
           ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
             top: "#B4EC51",
@@ -86,14 +92,30 @@ export default {
             top: "#A664B1",
             bottom: "#473E9D"
           }
-        }
+        },
+        {
+          name: "Purple Juice 04",
+          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
+          color: {
+            top: "#A664B1",
+            bottom: "#473E9D"
+          }
+        },
+        {
+          name: "Red Juice 02",
+          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
+          color: {
+            top: "#FDA0A8",
+            bottom: "#DF0B2B"
+          }
+        },
       ],
       selectedJuice: Object
     };
   },
   methods: {
     incrementCounter: function() {
-      // this check stops the last bottle from being swiped past the center position
+      // this check stops the first bottle from being swiped past the center position
       if (this.counter >= this.classes.length - 4) {
         // console.log("increment limit reached");
         return;
@@ -102,8 +124,8 @@ export default {
       }
     },
     decrementCounter: function() {
-      // this check stops the first bottle from being swiped past the center position
-      if (this.counter <= 0) {
+      // This check stopes the last bottle from being swiped past the center position
+      if (this.counter <= - (this.juices.length -4)) {
         // console.log("decrement limit reached");
         return;
       } else {
@@ -118,9 +140,11 @@ export default {
       if (this.counter + i <= 0) {
         classIndex = 0;
       }
-      // If the counter goes higher than the length of the array make it 8 (apply last class in classes array)
+      // If the counter goes higher than the length of the array
+      // Set it to be one less than the array.length
+      // (sets classIndex to choose the last class in the array)
       if (this.counter + i >= this.classes.length) {
-        classIndex = 8;
+        classIndex = this.classes.length -1;
       }
 
       // if classIndex puts bottle in the middle then set it to be the selected juice prop
