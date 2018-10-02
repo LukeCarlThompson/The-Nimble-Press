@@ -337,14 +337,14 @@ export default {
     bottlePosition: String
   },
   computed: {
-    uniqueId() {
+    uniqueId: function() {
       // replace all spaces with _ and add a random number between 1 and 100 on the end
       const juiceComputedId =
         this.juiceName.replace(/\s/g, "_") +
         Math.floor(Math.random() * 100 + 1);
       return juiceComputedId;
     },
-    gradientColors() {
+    gradientColors: function() {
       return {
         "--top-color": this.juiceColor.top,
         "--bottom-color": this.juiceColor.bottom
@@ -352,7 +352,7 @@ export default {
     }
   },
   methods: {
-    onPan(e) {
+    onPan: function(e) {
       // select the svg inside our component not the whole component
       var thisBottle = this.$el.querySelector("svg");
 
@@ -361,10 +361,15 @@ export default {
 
       // tone down the movement input then apply it to the bottle
       var rotate = e.deltaX * 0.06;
-      thisBottle.style.transform =
-        "rotate(" + rotate + "deg) translateY(5px) scale(1.03)";
+      thisBottle.style.transform = "rotate(" + rotate + "deg) translateY(20%) scale(1.1)";
+        
+      thisBottle.style.transitionDuration = "1s";
+      thisBottle.style.transitionTimingFunction = "cubic-bezier(0, 0.5, 0, 1)";
 
-      // this prop turns true when draggin has finished
+      // this prop turns true when dragging has finished
+      // update counter to move bottle left or right
+      // then reset the z-index and transition duration
+      // then anim it back to place
       if (e.isFinal) {
         if (e.distance > 40 && e.additionalEvent == "panright") {
           this.$emit("incrementCounter");
@@ -372,11 +377,13 @@ export default {
           this.$emit("decrementCounter");
         }
         this.$el.style.zIndex = "0";
+        thisBottle.style.transitionDuration = "0s";
         anime({
           targets: thisBottle,
           rotate: 0,
-          duration: 1000,
-          delay: 0
+          scale: 1,
+          translateY: 0,
+          duration: 1000
         });
       }
     }

@@ -12,7 +12,7 @@
     "modern-normalize": "^0.5.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
-    "vue2-hammer": "^2.0.1"
+    "vue2-hammer": "^2.1.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.4",
