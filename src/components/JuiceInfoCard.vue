@@ -45,7 +45,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .juice-info-card {
   box-shadow: 0 10px 40px rgba(51, 66, 150, 0.2);

@@ -1,10 +1,5 @@
 <template>
   <div class="bottle-swiper-wrap">
-    <!-- <li class="list-item" v-for="juice in juices" :key="juice.name">
-        <JuiceBottle :juiceColor="juice.color"/>
-      </li> -->
-    <!-- <li class="list-item" v-for="(data, index) in skills" :key="data.skill"> -->
-    <!-- <JuiceBottle v-for="(juice, i) in juices" :juiceColor="juices[i].color" :key="i"/> -->
     <JuiceBottle
       v-for="(juice, i) in juices"
       :juice-color="juice.color"
@@ -13,7 +8,7 @@
       :key="juice.name"
       @incrementCounter="incrementCounter"
       @decrementCounter="decrementCounter"/>
-    <juiceInfoCard :juice-info="juiceInfo()" />
+    <juiceInfoCard :juice-info="selectedJuice" />
 
   </div>
 </template>
@@ -92,14 +87,15 @@ export default {
             bottom: "#473E9D"
           }
         }
-      ]
+      ],
+      selectedJuice: Object
     };
   },
   methods: {
     incrementCounter: function() {
       // this check stops the last bottle from being swiped past the center position
-      if(this.counter >= this.classes.length - 4) {
-        console.log('increment limit reached');
+      if (this.counter >= this.classes.length - 4) {
+        // console.log("increment limit reached");
         return;
       } else {
         this.counter += 1;
@@ -107,8 +103,8 @@ export default {
     },
     decrementCounter: function() {
       // this check stops the first bottle from being swiped past the center position
-      if(this.counter <= 0) {
-        console.log('decrement limit reached');
+      if (this.counter <= 0) {
+        // console.log("decrement limit reached");
         return;
       } else {
         this.counter -= 1;
@@ -126,17 +122,20 @@ export default {
       if (this.counter + i >= this.classes.length) {
         classIndex = 8;
       }
+
+      // if classIndex puts bottle in the middle then set it to be the selected juice prop
+      // this juice gets sent to the juiceInfoCard component
+      if (this.classes[classIndex] == "selected") {
+        this.selectedJuice = this.juices[i];
+      }
+
       // return the appropriate class from the classes array
       return this.classes[classIndex];
-    },
-    juiceInfo() {
-      return this.juices[this.counter];
     }
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .bottle-swiper-wrap {
   overflow: hidden; // this stops margin collapse from the card element

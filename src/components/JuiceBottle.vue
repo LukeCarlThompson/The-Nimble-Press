@@ -334,7 +334,7 @@ export default {
   props: {
     juiceColor: Object,
     juiceName: String,
-    bottlePosition: String
+    bottlePosition: String,
   },
   computed: {
     uniqueId: function() {
