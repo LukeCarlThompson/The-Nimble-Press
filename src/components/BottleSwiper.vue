@@ -108,7 +108,7 @@ export default {
             top: "#FDA0A8",
             bottom: "#DF0B2B"
           }
-        },
+        }
       ],
       selectedJuice: Object
     };
@@ -125,7 +125,7 @@ export default {
     },
     decrementCounter: function() {
       // This check stopes the last bottle from being swiped past the center position
-      if (this.counter <= - (this.juices.length -4)) {
+      if (this.counter <= -(this.juices.length - 4)) {
         // console.log("decrement limit reached");
         return;
       } else {
@@ -144,7 +144,7 @@ export default {
       // Set it to be one less than the array.length
       // (sets classIndex to choose the last class in the array)
       if (this.counter + i >= this.classes.length) {
-        classIndex = this.classes.length -1;
+        classIndex = this.classes.length - 1;
       }
 
       // if classIndex puts bottle in the middle then set it to be the selected juice prop
