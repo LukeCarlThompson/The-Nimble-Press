@@ -394,7 +394,7 @@ export default {
           skewX: [10, -8, ,5, 0],
           rotate: [8, -7, 5, 0],
           duration: 300,
-          easing: "easeInOutSine",
+          easing: "easeOutQuart",
           complete: function(anim) {
             anim.animatables[0].target.style.transformOrigin = "";
           },
