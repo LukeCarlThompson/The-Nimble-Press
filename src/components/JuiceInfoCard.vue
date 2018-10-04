@@ -13,11 +13,11 @@
             <span class="price">$4.95</span>
           </div>
           <form id="size-form">
-            <input type="radio" name="small size" id="small-size" value="0" v-model="juiceInfo.size" v-on:input="changeBottleSize">
+            <input type="radio" name="small size" id="small-size" value="0" v-model="juiceInfo.size" v-on:input="changeBottleSize" />
             <label for="small-size">Sml<br><span>275ml</span></label>
-            <input type="radio" name="medium size" id="medium-size" value="1" v-model="juiceInfo.size" v-on:input="changeBottleSize">
+            <input type="radio" name="medium size" id="medium-size" value="1" v-model="juiceInfo.size" v-on:input="changeBottleSize" />
             <label for="medium-size">Med<br><span>350ml</span></label>
-            <input type="radio" name="large size" id="large-size" value="2" v-model="juiceInfo.size" v-on:input="changeBottleSize" checked>
+            <input type="radio" name="large size" id="large-size" value="2" v-model="juiceInfo.size" v-on:input="changeBottleSize" />
             <label for="large-size">Lrg<br><span>500ml</span></label>
           </form>
         </div>
