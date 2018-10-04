@@ -164,9 +164,10 @@
           :mask="'url(#' + bottleOutlineId + ')'" 
           filter="url(#filter-1)" 
           transform="translate(12 22)" >
-          <use 
+          <path
             id="bottle-outline" 
-            fill="#D8D8D8" 
+            fill="#D8D8D8"
+            opacity="0.5"
             fill-rule="nonzero"
             d="M 35.33 0 C 35.33 23.66 0 13.14 0 43.38 L 0 187.44 C 0 200.59 106 199.8 106 186.65 L 106 43.38 C 106 13.14 70.67 23.66 70.67 0 L 35.33 0 Z" />
           <path 
