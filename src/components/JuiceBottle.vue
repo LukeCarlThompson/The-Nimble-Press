@@ -8,8 +8,7 @@
       xmlns:xlink="http://www.w3.org/1999/xlink" 
       width="130" 
       height="200" 
-      viewBox="0 0 130 250" 
-      @click="resize">
+      viewBox="0 0 130 250" >
       <defs>
         <filter 
           id="filter-1" 
@@ -194,8 +193,8 @@
           fill-rule="nonzero" 
           d="M40.8 15c0-5.3 48.4-5.3 48.4 0V24H40.8V15z"/>
         <g 
-          id="bottle-label" 
-          transform="translate(27.7 75.4)">
+          id="bottle-label"
+          style="transform: translateX(27.7px) translateY(75.4px);">
           <path 
             id="label-bg" 
             fill="#FFF" 
@@ -311,8 +310,37 @@ import anime from "animejs";
 
 export default {
   name: "JuiceBottle",
+  data: function() {
+    return {
+      sizeData: [
+        { size: "small",
+          path:
+            "M 35.544 47.45 C 35.544 66.613 10.576 70.407 10.576 94.9 L 10.576 187.929 C 10.576 198.58 95.184 198.58 95.184 187.929 L 95.184 94.9 C 95.184 70.407 71.088 66.613 71.088 47.45 L 35.544 47.45 Z",
+          lidY: 45,
+          labelY: 100,
+          juiceColorScaleY: 0.85
+        },
+        { size: "medium",
+          path:
+            "M 35.33 0 C 35.33 23.66 10.576 19.215 10.576 49.455 L 10.576 187.929 C 10.576 201.079 95.184 201.079 95.184 187.929 L 95.184 49.455 C 95.184 19.215 70.67 23.66 70.67 0 L 35.33 0 Z",
+          lidY: 0,
+          labelY: 75.4,
+          juiceColorScaleY: 1
+        },
+        { size: "large",
+          path:
+            "M 35.33 0 C 35.33 23.66 0 13.14 0 43.38 L 0 187.44 C 0 200.59 106 199.8 106 186.65 L 106 43.38 C 106 13.14 70.67 23.66 70.67 0 L 35.33 0 Z",
+          lidY: 0,
+          labelY: 75.4,
+          juiceColorScaleY: 1
+        }
+      ]
+
+    }
+  },
   props: {
     juiceColor: Object,
+    juiceSize: String,
     juiceName: String,
     bottlePosition: String
   },
@@ -337,6 +365,64 @@ export default {
         "--top-color": this.juiceColor.top,
         "--bottom-color": this.juiceColor.bottom
       };
+    }
+  },
+  watch: {
+    juiceSize: function(value) {
+      // this function runs when the juiceSize prop changes
+
+      // get all the elements to animate
+      const bottleOutline = this.$el.querySelector("#path-2");
+      const bottleLid = this.$el.querySelector("#bottle-lid");
+      const bottleLabel = this.$el.querySelector("#bottle-label");
+      const juiceColor = this.$el.querySelector("#Juice-Color");
+
+      // Get the new values to animate to from the sizeData array
+      let newSize = this.sizeData[value];
+
+      // stop any animations that might be currently playing
+      anime.remove(this.$el.querySelector("svg"), bottleOutline, juiceColor, bottleLabel, bottleLid);
+
+      let animSizeChange = anime
+        .timeline()
+        .add({
+          targets: this.$el.querySelector("svg"),
+          begin: function(anim) {
+            anim.animatables[0].target.style.transformOrigin = "50% 50%";
+          },
+          translateY: [-10, 5, 0],
+          rotate: [8, -7, 5, 3, 0],
+          duration: 200,
+          easing: "easeInOutSine",
+          complete: function(anim) {
+            anim.animatables[0].target.style.transformOrigin = "";
+          },
+          offset: 0
+        })
+        .add({
+          targets: bottleOutline,
+          d: [{ value: newSize.path }],
+          offset: 150
+        })
+        .add({
+          targets: juiceColor,
+          begin: function(anim) {
+            anim.animatables[0].target.style.transformOrigin = "50% 100%";
+          },
+          scaleY: newSize.juiceColorScaleY,
+          offset: 150
+        })
+        .add({
+          targets: bottleLabel,
+          translateX: [27.7, 27.7],
+          translateY: newSize.labelY,
+          offset: 150
+        })
+        .add({
+          targets: bottleLid,
+          translateY: newSize.lidY,
+          offset: 220
+        });
     }
   },
   methods: {
@@ -380,72 +466,6 @@ export default {
           }
         });
       }
-    },
-    resize: function() {
-      const bottleOutline = this.$el.querySelector("#path-2");
-      const bottleLid = this.$el.querySelector("#bottle-lid");
-      const bottleLabel = this.$el.querySelector("#bottle-label");
-      const juiceColor = this.$el.querySelector("#Juice-Color");
-
-      const largeSize = {
-        path:
-          "M 35.33 0 C 35.33 23.66 0 13.14 0 43.38 L 0 187.44 C 0 200.59 106 199.8 106 186.65 L 106 43.38 C 106 13.14 70.67 23.66 70.67 0 L 35.33 0 Z",
-        lidY: "37",
-        labelY: "75.4"
-      };
-      const mediumSize = {
-        path:
-          "M 35.33 0 C 35.33 23.66 10.576 19.215 10.576 49.455 L 10.576 187.929 C 10.576 201.079 95.184 201.079 95.184 187.929 L 95.184 49.455 C 95.184 19.215 70.67 23.66 70.67 0 L 35.33 0 Z",
-        lidY: "37",
-        labelY: "75.4"
-      };
-      const smallSize = {
-        path:
-          "M 35.544 47.45 C 35.544 66.613 10.576 70.407 10.576 94.9 L 10.576 187.929 C 10.576 198.58 95.184 198.58 95.184 187.929 L 95.184 94.9 C 95.184 70.407 71.088 66.613 71.088 47.45 L 35.544 47.45 Z",
-        lidY: "45",
-        labelY: "100"
-      };
-
-      anime
-        .timeline()
-        .add({
-          targets: this.$el.querySelector("svg"),
-          begin: function(anim) {
-            anim.animatables[0].target.style.transformOrigin = "50% 50%";
-          },
-          translateY: [-10, 5, 0],
-          rotate: [8, -7, 5, 3, 0],
-          duration: 200,
-          easing: "easeInOutSine",
-          complete: function(anim) {
-            anim.animatables[0].target.style.transformOrigin = "";
-          },
-          offset: 0
-        })
-        .add({
-          targets: bottleOutline,
-          d: [{ value: smallSize.path }],
-          offset: 150
-        })
-        .add({
-          targets: juiceColor,
-          begin: function(anim) {
-            anim.animatables[0].target.style.transformOrigin = "50% 100%";
-          },
-          scaleY: 0.85,
-          offset: 150
-        })
-        .add({
-          targets: bottleLabel,
-          translateX: [27.7, 27.7],
-          translateY: [75.4, smallSize.labelY],
-          offset: 150
-        })
-        .add({
-          targets: bottleLid,
-          translateY: smallSize.lidY,
-          offset: 220
-        });
     }
   }
 };

@@ -5,10 +5,12 @@
       :juice-color="juice.color"
       :bottle-position="bottlePosition(i)"
       :juice-name="juice.name"
+      :juice-size="juice.size"
       :key="juice.name"
       @pannedRight="decrementCounter"
       @pannedLeft="incrementCounter"/>
-    <juiceInfoCard :juice-info="selectedJuice" />
+    <juiceInfoCard :juice-info="selectedJuice"
+      @changeBottleSize="changeBottleSize"/>
 
   </div>
 </template>
@@ -24,7 +26,7 @@ export default {
     JuiceBottle,
     JuiceInfoCard
   },
-  data() {
+  data: function() {
     return {
       counter: 3,
       classes: [
@@ -39,6 +41,8 @@ export default {
       juices: [
         {
           name: "Orange Juice",
+          size: "2",
+          selected: true,
           ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
             top: "#F6D663",
@@ -47,6 +51,8 @@ export default {
         },
         {
           name: "Green Juice",
+          size: "2",
+          selected: false,
           ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
             top: "#B4EC51",
@@ -55,6 +61,8 @@ export default {
         },
         {
           name: "Green Juice 02",
+          size: "2",
+          selected: false,
           ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
             top: "#B4EC51",
@@ -63,6 +71,8 @@ export default {
         },
         {
           name: "Red Juice",
+          size: "2",
+          selected: false,
           ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
             top: "#FDA0A8",
@@ -71,6 +81,8 @@ export default {
         },
         {
           name: "Purple Juice",
+          size: "2",
+          selected: false,
           ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
             top: "#A664B1",
@@ -79,6 +91,8 @@ export default {
         },
         {
           name: "Purple Juice 02",
+          size: "2",
+          selected: false,
           ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
             top: "#A664B1",
@@ -87,6 +101,8 @@ export default {
         },
         {
           name: "Purple Juice 03",
+          size: "2",
+          selected: false,
           ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
             top: "#A664B1",
@@ -95,6 +111,8 @@ export default {
         },
         {
           name: "Purple Juice 04",
+          size: "2",
+          selected: false,
           ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
             top: "#A664B1",
@@ -103,6 +121,8 @@ export default {
         },
         {
           name: "Red Juice 02",
+          size: "2",
+          selected: false,
           ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
           color: {
             top: "#FDA0A8",
@@ -147,14 +167,25 @@ export default {
         classIndex = this.classes.length - 1;
       }
 
-      // if classIndex puts bottle in the middle then set it to be the selected juice prop
-      // this juice gets sent to the juiceInfoCard component
+      // if classIndex puts bottle in the middle then it's selected value to true and all the rest to false
+      // the selected juice gets sent to the juiceInfoCard component
       if (this.classes[classIndex] == "selected") {
+        this.juices[i].selected = true;
         this.selectedJuice = this.juices[i];
+      } else {
+        this.juices[i].selected = false;
       }
 
       // return the appropriate class from the classes array
       return this.classes[classIndex];
+    },
+    changeBottleSize: function(value) {
+      // loop over the juices and if it is selected then update the size value
+      for(let i = 0; this.juices.length > i; i++) {
+        if (this.juices[i].selected == true) {
+          this.juices[i].size = value;
+        }
+      }
     }
   }
 };
