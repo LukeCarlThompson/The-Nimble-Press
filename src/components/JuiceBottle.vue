@@ -311,6 +311,12 @@ import anime from "animejs";
 
 export default {
   name: "JuiceBottle",
+  props: {
+    juiceColor: Object,
+    juiceSize: String,
+    juiceName: String,
+    bottlePosition: String
+  },
   data: function() {
     return {
       sizeData: [
@@ -336,14 +342,7 @@ export default {
           juiceColorScaleY: 1
         }
       ]
-
-    }
-  },
-  props: {
-    juiceColor: Object,
-    juiceSize: String,
-    juiceName: String,
-    bottlePosition: String
+    };
   },
   computed: {
     uniqueId: function() {
@@ -384,15 +383,14 @@ export default {
       // stop any animations that might be currently playing
       anime.remove(this.$el.querySelector("svg"), bottleOutline, juiceColor, bottleLabel, bottleLid);
 
-      let animSizeChange = anime
-        .timeline()
+      anime.timeline()
         .add({
           targets: this.$el.querySelector("svg"),
           begin: function(anim) {
             anim.animatables[0].target.style.transformOrigin = "50% 50%";
           },
-          skewX: [10, -8, ,5, 0],
-          rotate: [8, -7, 5, 0],
+          skewX: [10, -8, 5, 0],
+          rotate: [12, -8, 5, 0],
           duration: 300,
           easing: "easeOutQuart",
           complete: function(anim) {
