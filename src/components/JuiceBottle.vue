@@ -391,7 +391,6 @@ export default {
           begin: function(anim) {
             anim.animatables[0].target.style.transformOrigin = "50% 50%";
           },
-          // translateY: [-10, 5, 0],
           skewX: [10, -8, ,5, 0],
           rotate: [8, -7, 5, 0],
           duration: 300,
