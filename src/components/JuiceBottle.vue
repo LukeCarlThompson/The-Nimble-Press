@@ -391,9 +391,10 @@ export default {
           begin: function(anim) {
             anim.animatables[0].target.style.transformOrigin = "50% 50%";
           },
-          translateY: [-10, 5, 0],
-          rotate: [8, -7, 5, 3, 0],
-          duration: 200,
+          // translateY: [-10, 5, 0],
+          skewX: [10, -8, ,5, 0],
+          rotate: [8, -7, 5, 0],
+          duration: 300,
           easing: "easeInOutSine",
           complete: function(anim) {
             anim.animatables[0].target.style.transformOrigin = "";
@@ -403,7 +404,7 @@ export default {
         .add({
           targets: bottleOutline,
           d: [{ value: newSize.path }],
-          offset: 150
+          offset: 200
         })
         .add({
           targets: juiceColor,
@@ -411,7 +412,7 @@ export default {
             anim.animatables[0].target.style.transformOrigin = "50% 100%";
           },
           scaleY: newSize.juiceColorScaleY,
-          offset: 150
+          offset: 200
         })
         .add({
           targets: bottleLabel,
@@ -422,7 +423,7 @@ export default {
         .add({
           targets: bottleLid,
           translateY: newSize.lidY,
-          offset: 220
+          offset: 250
         });
     }
   },
