@@ -7,32 +7,26 @@
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink" 
       width="130" 
-      height="200" 
+      height="250"
       viewBox="0 0 130 250" >
       <defs>
         <filter 
           id="filter-1" 
-          width="155.7%" 
-          height="129.8%" 
-          x="-27.8%" 
-          y="-14.9%" 
-          filterUnits="objectBoundingBox">
-          <feOffset 
-            dy="5" 
-            in="SourceAlpha" 
-            result="shadowOffsetOuter1"/>
-          <feGaussianBlur 
-            in="shadowOffsetOuter1" 
-            result="shadowBlurOuter1" 
-            stdDeviation="5"/>
-          <feColorMatrix 
-            in="shadowBlurOuter1" 
-            result="shadowMatrixOuter1" 
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-          <feMerge>
-            <feMergeNode in="shadowMatrixOuter1"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
+          width="400%" 
+          height="800%" 
+          x="-100%" 
+          y="-400%" 
+          >
+          <feDropShadow dx="5" dy="5" stdDeviation="8" flood-color="grey" flood-opacity="0.3" />
+        </filter>
+        <filter 
+          :id="blurFilterId" 
+          width="200%" 
+          height="800%" 
+          x="-50%" 
+          y="-400%" 
+          >
+          <feGaussianBlur stdDeviation="15" />
         </filter>
         <linearGradient 
           :id="uniqueId" 
@@ -155,10 +149,15 @@
           id="path-13" 
           d="M22 14.6h1v.4l.6-.4.6-.1c.4 0 .8.1 1 .4.3.3.4.7.4 1.1v2.8h-1V17v-1l-.3-.4a.6.6 0 0 0-.4-.1c-.2 0-.4 0-.5.2-.2.1-.3.3-.3.6l-.1.8v1.7h-1v-4.2zm5-1.7c.2 0 .4 0 .5.2.2.1.2.3.2.5s0 .3-.2.4c-.1.2-.3.2-.4.2-.2 0-.4 0-.5-.2a.7.7 0 0 1-.2-.5c0-.1 0-.3.2-.4.1-.2.3-.2.5-.2zm-.5 1.7h1v4.2h-1v-4.2zm2 0h1v.5l.6-.5.8-.1a1.3 1.3 0 0 1 1.2.8c.1-.3.3-.5.6-.6a1.6 1.6 0 0 1 1.5 0c.3.1.4.3.5.6l.2 1v2.5h-1v-2.1c0-.5-.1-.8-.3-1 0-.2-.3-.2-.5-.2l-.5.1a1 1 0 0 0-.3.4v2.8h-1.1v-2L31 16c0-.2-.2-.3-.3-.4a.6.6 0 0 0-.4-.1l-.4.1a1 1 0 0 0-.3.5l-.1.8v2h-1v-4.3zM37 13v2l.6-.4.7-.1c.5 0 1 .2 1.4.6.3.4.5 1 .5 1.6 0 .7-.2 1.2-.6 1.6a1.8 1.8 0 0 1-2 .5 2 2 0 0 1-.6-.4v.4h-1V13h1zm1 2.5a1 1 0 0 0-.7.3c-.3.2-.4.5-.4 1 0 .3.1.6.4.8.2.2.4.4.8.4.3 0 .6-.2.8-.4.2-.2.3-.5.3-.9l-.3-.9a1 1 0 0 0-.8-.3zm3-2.5h1v5.8h-1V13zm6.1 4h-3.3c0 .3.2.6.4.7.2.2.4.3.8.3s.7-.1 1-.4l.8.4a2 2 0 0 1-1.8 1 2.1 2.1 0 0 1-2.2-2.3c0-.6.2-1.1.6-1.6a2 2 0 0 1 1.5-.6c.7 0 1.2.2 1.6.6.4.5.6 1 .6 1.7v.2zm-1-.8a1 1 0 0 0-.4-.6l-.7-.2c-.3 0-.6 0-.8.2l-.4.6H46zM23 21v.4l.6-.4.7-.2c.6 0 1 .3 1.4.7.4.4.6 1 .6 1.6 0 .6-.2 1.1-.6 1.5a1.8 1.8 0 0 1-2 .6 2 2 0 0 1-.7-.5v2h-1v-5.7h1zm1 .8a1 1 0 0 0-.7.4c-.2.2-.3.5-.3.9 0 .3 0 .6.3.9.2.2.5.3.8.3.3 0 .6-.1.8-.3.2-.3.3-.6.3-1 0-.3 0-.6-.3-.8a1 1 0 0 0-.8-.4zm2.9-.8h.9v.5c0-.2.2-.4.3-.5a1 1 0 0 1 1 0l-.3.9-.3-.1c-.2 0-.3 0-.4.3l-.2 1.2v1.9h-1V21zm6.9 2.4h-3.4c0 .3.2.5.4.7.2.2.5.3.8.3.4 0 .7-.2 1-.5l.9.5a2 2 0 0 1-1.9.9 2.1 2.1 0 0 1-2.2-2.2c0-.7.2-1.2.6-1.6a2 2 0 0 1 1.6-.7c.6 0 1.1.3 1.6.7.4.4.6 1 .6 1.7v.2zm-1-.9a1 1 0 0 0-.5-.5c-.2-.2-.4-.3-.7-.3-.3 0-.5.1-.8.3l-.3.5h2.2zm4.3-1l-.6.7c-.3-.3-.5-.4-.7-.4h-.3a.2.2 0 0 0 0 .4l.3.2.4.2.8.6.2.8c0 .3-.1.7-.4 1-.3.2-.6.3-1 .3-.7 0-1.2-.3-1.5-.7l.6-.7.4.3.5.1h.3l.1-.3c0-.2-.1-.3-.4-.5l-.4-.2c-.6-.3-1-.7-1-1.2 0-.4.2-.7.4-.9.3-.2.6-.4 1-.4a1.7 1.7 0 0 1 1.3.7zm3.5 0l-.7.7c-.2-.3-.5-.4-.7-.4H39a.2.2 0 0 0 0 .4l.3.2.4.2.8.6c.2.2.2.5.2.8 0 .3 0 .7-.4 1-.2.2-.6.3-1 .3-.7 0-1.1-.3-1.5-.7l.6-.7.5.3.4.1h.3l.2-.3c0-.2-.2-.3-.5-.5l-.3-.2c-.7-.3-1-.7-1-1.2 0-.4 0-.7.3-.9.3-.2.6-.4 1-.4a1.7 1.7 0 0 1 1.4.7zM21.8 8h.6v.9h.4v.5h-.4v2h-.6v-2h-.3v-.5h.3v-1zm1.3 0h.6V9l.4-.2.3-.1c.3 0 .5 0 .6.2.2.2.3.4.3.7v1.6h-.6v-1-.6l-.2-.3h-.3-.3l-.2.4v1.5h-.6V7.8zm5.2 2.3h-2l.2.4.5.1c.2 0 .4 0 .6-.2l.5.2a1.2 1.2 0 0 1-1 .6 1.2 1.2 0 0 1-1.4-1.3c0-.4.1-.7.4-1 .2-.2.5-.3.9-.3s.7.1 1 .4c.1.2.3.5.3 1zm-.6-.5c0-.2-.2-.3-.3-.4a.7.7 0 0 0-.4 0h-.4l-.3.4h1.4z"/>
       </defs>
+      <ellipse
+          style="fill: var(--bottom-color);"
+          :filter="'url(#' + blurFilterId + ')'"
+          cx="65" cy="197" rx="30"
+          ry="20"/>
       <g 
         id="juice-bottle" 
+        filter="url(#filter-1)"
         fill="none" 
-        filter="url(#filter-1)" 
         fill-rule="evenodd">
         <g 
           id="bottle" 
@@ -360,6 +359,14 @@ export default {
         Math.floor(Math.random() * 1000 + 1)
       );
     },
+    blurFilterId: function() {
+      // create a unique ID so I can change the path of one bottle and not have it effect the masks of the other SVG's that use the same ID.
+      return (
+        "filter-" +
+        this.juiceName.replace(/\s/g, "_") +
+        Math.floor(Math.random() * 1000 + 1)
+      );
+    },
     gradientColors: function() {
       return {
         "--top-color": this.juiceColor.top,
@@ -477,10 +484,11 @@ export default {
     cursor: grabbing;
   }
   svg {
-    max-width: 100%;
+    width: 140%;
+    margin-left: -20%;
     transform-origin: 50% 200%;
     @media screen and (max-width: 530px) {
-      height: 40vw;
+      height: 50vw;
     }
   }
 }

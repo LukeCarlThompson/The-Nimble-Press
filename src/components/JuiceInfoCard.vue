@@ -61,12 +61,11 @@ export default {
   background-color: white;
   border-radius: 10px;
   padding: 10px;
-  margin: 160px auto 40px;
-  // height: 600px;
+  margin: 180px auto 40px;
   max-width: 400px;
   width: 100%;
-  @media screen and (max-width: 530px) {
-    margin: 32vw auto 40px;
+  @media screen and (max-width: 480px) {
+    margin: 35vw auto 40px;
   }
   ul {
     padding: 0;
@@ -87,7 +86,6 @@ export default {
   font-size: 2.4rem;
   font-weight: 300;
   color: rgb(120, 188, 190);
-  // margin-left: 1rem;
 }
 
 .size-chooser {

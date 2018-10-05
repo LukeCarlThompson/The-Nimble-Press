@@ -211,19 +211,19 @@ export default {
   transform: translateX(-500%) scale(0.3) rotate(15deg);
 }
 .far-left {
-  transform: translateX(-400%) scale(0.5) rotate(0);
+  transform: translateX(-400%) scale(0.4) rotate(0);
 }
 .left {
-  transform: translateX(-320%) scale(0.7) rotate(0);
+  transform: translateX(-320%) scale(0.6) rotate(0);
 }
 .selected {
-  transform: translateX(-200%) scale(1.2) rotate(0);
+  transform: translateX(-200%) scale(1) rotate(0);
 }
 .right {
-  transform: translateX(-80%) scale(0.7) rotate(0);
+  transform: translateX(-80%) scale(0.6) rotate(0);
 }
 .far-right {
-  transform: translateX(0) scale(0.5) rotate(0);
+  transform: translateX(0) scale(0.4) rotate(0);
 }
 .off-screen-right {
   transform: translateX(100%) scale(0.3) rotate(-15deg);
