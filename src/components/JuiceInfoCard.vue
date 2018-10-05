@@ -7,11 +7,8 @@
         :key="juiceInfo.name" 
         class="juice-info">
         <h1 class="juice-title">{{ juiceInfo.name }}</h1>
+        <span class="price">$4.95</span>
         <div class="size-chooser">
-          <div class="size-chooser-text-wrap">
-            <h4>Choose Size</h4>
-            <span class="price">$4.95</span>
-          </div>
           <form id="size-form">
             <input type="radio" name="small size" id="small-size" value="0" v-model="juiceInfo.size" v-on:input="changeBottleSize" />
             <label for="small-size">Sml<br><span>275ml</span></label>
@@ -22,12 +19,13 @@
           </form>
         </div>
         <ul>
-          <li 
+          <div class="juice-ingredient-wrap"
             v-for="(juice, i) in juiceInfo.ingredients" 
-            :key="i" 
-            class="juice-ingredient">
-            {{ juice }}
-          </li>
+            :key="i" >
+            <li class="juice-ingredient">
+              {{ juice }}
+            </li>
+          </div>
         </ul>
       </div>
 
@@ -59,19 +57,16 @@ export default {
 
 <style scoped lang="scss">
 .juice-info-card {
-  box-shadow: 0 10px 40px rgba(51, 66, 150, 0.2);
+  box-shadow: 0 10px 40px rgba(10, 25, 105, 0.20), 0 5px 20px rgba(10, 25, 105, 0.1);
   background-color: white;
   border-radius: 10px;
   padding: 10px;
   margin: 160px auto 40px;
-  height: 600px;
+  // height: 600px;
   max-width: 400px;
   width: 100%;
   @media screen and (max-width: 530px) {
     margin: 32vw auto 40px;
-  }
-  h1 {
-    padding-top: 40px;
   }
   ul {
     padding: 0;
@@ -80,28 +75,29 @@ export default {
     margin: 20px auto;
   }
 }
+
+.juice-title {
+  padding-top: 40px;
+  font-weight: 800;
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: rgb(120, 188, 190);
+  // margin-left: 1rem;
+}
+
 .size-chooser {
   margin: 10px;
-}
-.size-chooser-text-wrap {
-  display: flex;
-  h4 {
-    font-size: 1.4rem;
-    margin: 0 auto 0 0;
-    flex: 1 0 50%;
-  }
-  span {
-    flex: 1 1 auto;
-  }
-  .price {
-    font-size: 2rem;
-    font-weight: 600;
-  }
 }
 
 #size-form {
   display: flex;
   justify-content: space-around;
+  -webkit-tap-highlight-color: transparent;
   label {
     margin: 10px 10px 10px;
     height: 75px;
@@ -149,6 +145,23 @@ input[type="radio"] {
 	opacity: 0;
 	width: 0;
   height: 0;
+  position: absolute;
+}
+
+.juice-ingredient-wrap {
+  // border-top: 1px solid rgb(202, 202, 202);
+  position: relative;
+  padding: 15px 0;
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background-color: rgb(202, 202, 202);
+  }
 }
 
 .juice-ingredient {
