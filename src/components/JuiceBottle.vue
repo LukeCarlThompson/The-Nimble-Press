@@ -158,11 +158,11 @@
       <g 
         id="juice-bottle" 
         fill="none" 
+        filter="url(#filter-1)" 
         fill-rule="evenodd">
         <g 
           id="bottle" 
           :clip-path="'url(#' + bottleOutlineId + ')'" 
-          filter="url(#filter-1)" 
           transform="translate(12 22)" >
           <path
             id="bottle-outline" 
