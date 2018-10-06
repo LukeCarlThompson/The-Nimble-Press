@@ -2,10 +2,8 @@
   <div class="bottle-swiper-wrap">
     <JuiceBottle
       v-for="(juice, i) in juices"
-      :juice-color="juice.color"
       :bottle-position="bottlePosition(i)"
-      :juice-name="juice.name"
-      :juice-size="juice.size"
+      :juice="juice"
       :key="juice.name"
       @pannedRight="decrementCounter"
       @pannedLeft="incrementCounter"/>

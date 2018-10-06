@@ -1,6 +1,6 @@
 <template>
   <div 
-    :class="['juice-bottle', bottlePosition, juiceColor]"
+    :class="['juice-bottle', bottlePosition]"
     :style="gradientColors">
     <svg 
       v-hammer:pan="onPan"
@@ -311,9 +311,7 @@ import anime from "animejs";
 export default {
   name: "JuiceBottle",
   props: {
-    juiceColor: Object,
-    juiceSize: String,
-    juiceName: String,
+    juice: Object,
     bottlePosition: String
   },
   data: function() {
@@ -347,7 +345,7 @@ export default {
     uniqueId: function() {
       // replace all spaces with _ and add a random number between 1 and 100 on the end
       const juiceComputedId =
-        this.juiceName.replace(/\s/g, "_") +
+        this.juice.name.replace(/\s/g, "_") +
         Math.floor(Math.random() * 1000 + 1);
       return juiceComputedId;
     },
@@ -355,7 +353,7 @@ export default {
       // create a unique ID so I can change the path of one bottle and not have it effect the masks of the other SVG's that use the same ID.
       return (
         "bottle-outline" +
-        this.juiceName.replace(/\s/g, "_") +
+        this.juice.name.replace(/\s/g, "_") +
         Math.floor(Math.random() * 1000 + 1)
       );
     },
@@ -363,19 +361,19 @@ export default {
       // create a unique ID so I can change the path of one bottle and not have it effect the masks of the other SVG's that use the same ID.
       return (
         "filter-" +
-        this.juiceName.replace(/\s/g, "_") +
+        this.juice.name.replace(/\s/g, "_") +
         Math.floor(Math.random() * 1000 + 1)
       );
     },
     gradientColors: function() {
       return {
-        "--top-color": this.juiceColor.top,
-        "--bottom-color": this.juiceColor.bottom
+        "--top-color": this.juice.color.top,
+        "--bottom-color": this.juice.color.bottom
       };
     }
   },
   watch: {
-    juiceSize: function(value) {
+    'juice.size': function(value) {
       // this function runs when the juiceSize prop changes
 
       // get all the elements to animate
