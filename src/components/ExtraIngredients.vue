@@ -1,17 +1,19 @@
 <template>
-  <div class="bottle-swiper-wrap">
-    <JuiceBottle
-      v-for="(juice, i) in juices"
-      :bottle-position="bottlePosition(i)"
-      :juice="juice"
-      :key="juice.name"
-      @pannedRight="decrementCounter"
-      @pannedLeft="incrementCounter"/>
-    <juiceInfoCard :juice-info="selectedJuice"
-      @changeBottleSize="changeBottleSize"/>
-      <ExtraIngredients :juice-info="selectedJuice"
-      @changeBottleSize="changeBottleSize"/>
-      <h1>Whuuuut</h1>
+  <div class="extra-ingredients-wrap">
+    <ul class="extras-chooser-list">
+      <li>Fruit</li>
+      <li>Vegetables</li>
+      <li>Supplements</li>
+    </ul>
+    <div class="ingredients-swiper-wrap">
+      <JuiceBottle
+        v-for="(juice, i) in juices"
+        :bottle-position="bottlePosition(i)"
+        :juice="juice"
+        :key="juice.name"
+        @pannedRight="decrementCounter"
+        @pannedLeft="incrementCounter"/>
+      </div>
 
   </div>
 </template>
@@ -19,15 +21,11 @@
 <script>
 // @ is an alias to /src
 import JuiceBottle from "@/components/JuiceBottle.vue";
-import JuiceInfoCard from "@/components/JuiceInfoCard.vue";
-import ExtraIngredients from "@/components/ExtraIngredients.vue";
 
 export default {
-  name: "BottleSwiper",
+  name: "ExtraIngredients",
   components: {
     JuiceBottle,
-    JuiceInfoCard,
-    ExtraIngredients
   },
   data: function() {
     return {
@@ -133,11 +131,7 @@ export default {
           }
         }
       ],
-      selectedJuice: Object,
-      ingredients: {
-        fruit: ["Strawberry", "Blueberry", "Green Apple", "Pomegranite", "Red Grape", "Banana", "Pineapple", "Mulberry", "Pear", "Kiwi Fruit", "Lemon", "Orange", "Watermelon", "Rockmelon"],
-        vegetables: ["Beetroot", "Cucumber", "Celery", "Kale", "Mint", "Carrot", "Ginger"]
-      }
+      selectedJuice: Object
     };
   },
   methods: {
@@ -185,23 +179,27 @@ export default {
 
       // return the appropriate class from the classes array
       return this.classes[classIndex];
-    },
-    changeBottleSize: function(value) {
-      // loop over the juices and if it is selected then update the size value
-      for(let i = 0; this.juices.length > i; i++) {
-        if (this.juices[i].selected == true) {
-          this.juices[i].size = value;
-        }
-      }
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
-.bottle-swiper-wrap {
-  overflow: hidden; // this stops margin collapse from the card element
+.extra-ingredients-wrap {
+  // overflow: hidden; // this stops margin collapse from the card element
   position: relative;
+  min-height: 100vh;
+  border: 2px solid red;
+}
+
+.extras-chooser-list {
+  list-style: none;
+  margin: 1rem;
+  padding-left: 0;
+  li {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
 }
 
 .juice-bottle {
