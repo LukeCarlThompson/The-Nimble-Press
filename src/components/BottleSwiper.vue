@@ -38,90 +38,90 @@ export default {
       ],
       juices: [
         {
-          name: "Orange Juice",
+          name: "Ginger Zinger",
           size: "2",
           selected: true,
-          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
+          ingredients: ["Carrot", "Lemon", "Ginger"],
           color: {
             top: "#F6D663",
             bottom: "#F77C1C"
           }
         },
         {
-          name: "Green Juice",
+          name: "Cool Kiwi",
           size: "2",
           selected: false,
-          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
+          ingredients: ["Kiwi Fruit", "Kale", "Mint"],
           color: {
             top: "#B4EC51",
             bottom: "#429321"
           }
         },
         {
-          name: "Green Juice 02",
+          name: "Tropi-Kale",
           size: "2",
           selected: false,
-          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
+          ingredients: ["Kale", "Banana", "Pineapple"],
           color: {
             top: "#B4EC51",
             bottom: "#429321"
           }
         },
         {
-          name: "Red Juice",
+          name: "Very Berry",
           size: "2",
           selected: false,
-          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
+          ingredients: ["Kale", "Banana", "Pineapple"],
           color: {
             top: "#FDA0A8",
             bottom: "#DF0B2B"
           }
         },
         {
-          name: "Purple Juice",
+          name: "Grape Nectar",
           size: "2",
           selected: false,
-          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
+          ingredients: ["Red Grape", "Mulberry", "Pear"],
           color: {
             top: "#A664B1",
             bottom: "#473E9D"
           }
         },
         {
-          name: "Purple Juice 02",
+          name: "Pomegranite Twist",
           size: "2",
           selected: false,
-          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
+          ingredients: ["Pomegranite", "Green Apple", "Lime"],
           color: {
             top: "#A664B1",
             bottom: "#473E9D"
           }
         },
         {
-          name: "Purple Juice 03",
+          name: "Mellow Melon",
           size: "2",
           selected: false,
-          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
+          ingredients: ["Watermelon", "Strawberry", "Green Apple", "Mint"],
           color: {
-            top: "#A664B1",
-            bottom: "#473E9D"
+            top: "#FDA0A8",
+            bottom: "#DF0B2B"
           }
         },
         {
-          name: "Purple Juice 04",
+          name: "Cucumber Cooler",
           size: "2",
           selected: false,
-          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
+          ingredients: ["Cucumber", "Rockmelon", "Celery"],
           color: {
-            top: "#A664B1",
-            bottom: "#473E9D"
+            top: "#B4EC51",
+            bottom: "#429321"
           }
         },
         {
-          name: "Red Juice 02",
+          name: "Boom Bap Beet",
           size: "2",
           selected: false,
-          ingredients: ["ingedient 01", "ingedient 02", "ingredient 03"],
+          ingredients: ["Beetroot", "Strawberry", "Blueberry"],
           color: {
             top: "#FDA0A8",
             bottom: "#DF0B2B"
