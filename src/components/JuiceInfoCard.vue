@@ -1,6 +1,6 @@
 <template>
   <div class="juice-info-card" >
-    <transition 
+    <transition
       name="slide-fade" 
       mode="out-in">
       <div 
@@ -19,13 +19,19 @@
           </form>
         </div>
         <ul>
-          <div class="juice-ingredient-wrap"
-            v-for="(juice, i) in juiceInfo.ingredients" 
-            :key="i" >
-            <li class="juice-ingredient">
-              {{ juice }}
-            </li>
-          </div>
+          <transition-group name="ingredients-list">
+            <div class="juice-ingredient-wrap"
+              v-for="(juice, i) in juiceInfo.ingredients" 
+              :key="juice" >
+              <li class="juice-ingredient">
+                {{ juice }}
+                <span class="remove-icon"
+                  v-on:click="removeIngredient(i)"
+                  v-hammer:press="() => removeIngredient(i)" >
+                </span>
+              </li>
+            </div>
+          </transition-group>
         </ul>
       </div>
 
@@ -50,6 +56,11 @@ export default {
     changeBottleSize: function() {
       // this sends the event back up to the parent component so we can send it down to the bottle
       this.$emit("changeBottleSize", this.juiceInfo.size);
+    },
+    removeIngredient: function(i) {
+      this.juiceInfo.ingredients.splice(i, 1);
+      // this.delete(this.juiceInfo.ingredients, i);
+
     }
   }
 };
@@ -57,13 +68,15 @@ export default {
 
 <style scoped lang="scss">
 .juice-info-card {
-  box-shadow: 0 10px 40px rgba(10, 25, 105, 0.20), 0 5px 20px rgba(10, 25, 105, 0.1);
+  box-shadow: 0 10px 40px rgba(10, 25, 105, 0.2),
+    0 5px 20px rgba(10, 25, 105, 0.1);
   background-color: white;
   border-radius: 10px;
   padding: 10px;
   margin: 180px auto 40px;
   max-width: 400px;
   width: 100%;
+  // height: 35rem;
   @media screen and (max-width: 480px) {
     margin: 35vw auto 40px;
   }
@@ -120,7 +133,7 @@ export default {
       height: 85px;
       width: 85px;
       border-radius: 100px;
-      background-color: #50DBBB;
+      background-color: #50dbbb;
       transform: scale(0);
       opacity: 0;
       transition: transform 0.2s ease-in-out, opacity 0.1s;
@@ -140,8 +153,8 @@ export default {
 }
 
 input[type="radio"] {
-	opacity: 0;
-	width: 0;
+  opacity: 0;
+  width: 0;
   height: 0;
   position: absolute;
 }
@@ -165,7 +178,50 @@ input[type="radio"] {
 .juice-ingredient {
   list-style: none;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  // position: relative;
+  // position: relative;
+  // display: block;
 }
+
+.remove-icon {
+  height: 25px;
+  width: 25px;
+  background-color: rgb(197, 84, 84);
+  border-radius: 100%;
+  margin-left: auto;
+  display: inline-block;
+  position: relative;
+  &:after {
+    content: "";
+    display: block;
+    width: 15px;
+    height: 3px;
+    border-radius: 10px;
+    background-color: white;
+    position: absolute;
+    top: 11px;
+    left: 5px;
+  }
+}
+
+.ingredients-list-enter-active, .ingredients-list-leave-active {
+  transition: all 0.2s ease-in;
+  // position: absolute;
+}
+.ingredients-list-enter, .ingredients-list-leave-to {
+  transform: translateX(-20%);
+  opacity: 0;
+}
+.ingredients-list-move {
+  transition: transform 0.6s ease-in-out 0.1s;
+}
+.ingredients-list-leave-active {
+  position: absolute;
+}
+
+
 
 .slide-fade-enter-active {
   transition: all 1s cubic-bezier(0, 1, 0, 1);
