@@ -4,7 +4,9 @@
     <div class="ingredient" 
       v-hammer:pan="onPan">
     </div>
-    <p class="ingredient-name">{{this.ingredient.name}}</p>
+    <transition name="fade">
+      <p class="ingredient-name" v-if="this.ingredient.selected">{{this.ingredient.name}}</p>
+    </transition>
   </div>
 </template>
 
@@ -107,5 +109,12 @@ export default {
 }
 .bottom-color {
   stop-color: var(--bottom-color);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>
