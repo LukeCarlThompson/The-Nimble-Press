@@ -9,9 +9,12 @@
       @pannedLeft="incrementCounter"/>
     <juiceInfoCard :juice-info="selectedJuice"
       @changeBottleSize="changeBottleSize"/>
-      <ExtraIngredients :juice-info="selectedJuice"
-      @changeBottleSize="changeBottleSize"/>
-      <h1>Whuuuut</h1>
+      <ExtraIngredients
+        :juice-info="selectedJuice"
+        :ingredients="ingredients"
+        @changeBottleSize="changeBottleSize"
+        @addIngredient="addIngredient"/>
+      <h1>After ExtraIngredients Component</h1>
 
   </div>
 </template>
@@ -135,7 +138,78 @@ export default {
       ],
       selectedJuice: Object,
       ingredients: {
-        fruit: ["Strawberry", "Blueberry", "Green Apple", "Pomegranite", "Red Grape", "Banana", "Pineapple", "Mulberry", "Pear", "Kiwi Fruit", "Lemon", "Orange", "Watermelon", "Rockmelon"],
+        fruit: [
+          {
+            name: "Strawberry",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Blueberry",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Green Apple",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Pomegranite",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Red Grape",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Banana",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Pineapple",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Mulberry",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Pear",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Kiwi Fruit",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Lemon",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Orange",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Watermelon",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Rockmelon",
+            color: "#DF0B2B",
+            selected: false
+          },
+        ],
         vegetables: ["Beetroot", "Cucumber", "Celery", "Kale", "Mint", "Carrot", "Ginger"]
       }
     };
@@ -191,6 +265,14 @@ export default {
       for(let i = 0; this.juices.length > i; i++) {
         if (this.juices[i].selected == true) {
           this.juices[i].size = value;
+        }
+      }
+    },
+    addIngredient: function(ingredient) {
+      for(var i = 0; this.juices.length > i; i++) {
+        if (this.juices[i].selected == true) {
+          this.juices[i].selected = true;
+          this.juices[i].ingredients.push(ingredient.name)
         }
       }
     }

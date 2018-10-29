@@ -27,7 +27,7 @@
                 {{ juice }}
                 <span class="remove-icon"
                   v-on:click="removeIngredient(i)"
-                  v-hammer:press="() => removeIngredient(i)" >
+                  v-hammer:press="() => removeIngredient(i)">
                 </span>
               </li>
             </div>
