@@ -14,7 +14,7 @@
         :ingredients="ingredients"
         @changeBottleSize="changeBottleSize"
         @addIngredient="addIngredient"/>
-      <h1>After ExtraIngredients Component</h1>
+      <Footer/>
 
   </div>
 </template>
@@ -24,13 +24,15 @@
 import JuiceBottle from "@/components/JuiceBottle.vue";
 import JuiceInfoCard from "@/components/JuiceInfoCard.vue";
 import ExtraIngredients from "@/components/ExtraIngredients.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "BottleSwiper",
   components: {
     JuiceBottle,
     JuiceInfoCard,
-    ExtraIngredients
+    ExtraIngredients,
+    Footer
   },
   data: function() {
     return {
