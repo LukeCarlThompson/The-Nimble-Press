@@ -1,10 +1,13 @@
 <template>
   <div class="extra-ingredients-wrap">
-    <ul class="extras-chooser-list">
-      <li>Fruit</li>
-      <li>Vegetables</li>
-      <li>Supplements</li>
-    </ul>
+    <h1>Extras</h1>
+    <select class="extras-chooser-list" v-on:change="selectedIngredientsList" value="fruit">
+      <option v-for="(ingredient, key) in ingredients"
+        :key="key"
+        :value="key">
+        {{ key }}
+      </option>
+    </select>
     <div class="ingredients-swiper-wrap">
       <Ingredient
         v-for="(fruit, i) in ingredients.fruit"
@@ -13,10 +16,19 @@
         :key="fruit.name"
         @pannedRight="decrementCounter"
         @pannedLeft="incrementCounter"/>
-      </div>
-      <div>
-        <button class="add-ingredient" v-on:click="addHandler">Add</button>
-      </div>
+    </div>
+    <!-- <div class="ingredients-swiper-wrap">
+      <Ingredient
+        v-for="(vegetable, i) in ingredients.vegetables"
+        :bottle-position="bottlePosition(i)"
+        :ingredient="ingredients.vegetables[i]"
+        :key="vegetable.name"
+        @pannedRight="decrementCounter(vegetable)"
+        @pannedLeft="incrementCounter"/>
+    </div> -->
+    <div>
+      <button class="add-ingredient" v-on:click="addHandler">Add</button>
+    </div>
 
   </div>
 </template>
@@ -42,13 +54,29 @@ export default {
         "far-left",
         "off-screen-left"
       ],
-      selectedJuice: Object
+      selectedJuice: Object,
     };
   },
   props: {
     ingredients: Object
   },
+  computed: {
+    // selectedIngredientsList: function() {
+    //   let ingredientsType = document.querySelector('.extras-chooser-list').value;
+
+    //   // console.log('this.ingredients[ingredientsType]', this.ingredients[ingredientsType])
+      
+    //   return this.ingredients[ingredientsType];
+    // },
+  },
   methods: {
+    selectedIngredientsList: function() {
+      let ingredientsType = document.querySelector('.extras-chooser-list').value;
+
+      console.log('this.ingredients[ingredientsType]', this.ingredients[ingredientsType])
+      
+      return this.ingredients[ingredientsType];
+    },
     incrementCounter: function() {
       // this check stops the first bottle from being swiped past the center position
       if (this.counter >= this.classes.length - 4) {
@@ -58,7 +86,8 @@ export default {
         this.counter += 1;
       }
     },
-    decrementCounter: function() {
+    decrementCounter: function(item) {
+      console.log(item);
       // This check stopes the last bottle from being swiped past the center position
       if (this.counter <= -(this.ingredients.fruit.length - 4)) {
         // console.log("decrement limit reached");

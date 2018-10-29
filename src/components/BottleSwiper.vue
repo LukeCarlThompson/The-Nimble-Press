@@ -210,7 +210,43 @@ export default {
             selected: false
           },
         ],
-        vegetables: ["Beetroot", "Cucumber", "Celery", "Kale", "Mint", "Carrot", "Ginger"]
+        vegetables: [
+          {
+            name: "Carrot",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Kale",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Cucumber",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Beetroot",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Celery",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Ginger",
+            color: "#DF0B2B",
+            selected: false
+          },
+          {
+            name: "Mint",
+            color: "#DF0B2B",
+            selected: false
+          }
+        ],
       }
     };
   },
