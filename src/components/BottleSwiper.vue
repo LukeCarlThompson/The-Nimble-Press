@@ -269,12 +269,28 @@ export default {
       }
     },
     addIngredient: function(ingredient) {
-      for(var i = 0; this.juices.length > i; i++) {
-        if (this.juices[i].selected == true) {
-          this.juices[i].selected = true;
-          this.juices[i].ingredients.push(ingredient.name)
+      // check if the juice already has that ingredient
+      const duplicateIngredient = () => {
+        let isDuplicate = this.selectedJuice.ingredients.filter(juiceIngredient => juiceIngredient == ingredient.name);
+        // Returns false if new ingredient does not match any ingredients in the selectedJuice ingredients array
+        return isDuplicate.length > 0;
+      };
+
+      const maxIngredientsReached = () => this.selectedJuice.ingredients.length >= 6;
+
+      if(maxIngredientsReached()) {
+        alert('Maximum number of ingredients reached');
+      } else if(duplicateIngredient()) {
+        alert('Juice already has this ingredient');
+      } else {
+        for(var i = 0; this.juices.length > i; i++) {
+          if (this.juices[i].selected == true) {
+            this.juices[i].selected = true;
+            this.juices[i].ingredients.push(ingredient.name)
+          }
         }
       }
+
     }
   }
 };
