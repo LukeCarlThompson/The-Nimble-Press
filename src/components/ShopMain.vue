@@ -436,7 +436,7 @@ export default {
   transform: translateX(-200%) scale(1) rotate(0);
   z-index: 10;
   .scrolled & {
-    transition: transform 0.2s cubic-bezier(0, 1, 0, 1);
+    transition: transform 0s;
     transform: translateX(-400%) scale(1) rotate(0);
     opacity: 1;
   }
