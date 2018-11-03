@@ -1,23 +1,24 @@
 <template>
-  <div class="bottle-swiper-wrap">
-    <JuiceBottle
+  <div class="shop-main-wrap">
+    <div class="bottle-swiper-wrap">
+      <JuiceBottle
       v-for="(juice, i) in juices"
       :bottle-position="bottlePosition(i)"
       :juice="juice"
       :key="juice.name"
       @pannedRight="decrementCounter"
       @pannedLeft="incrementCounter"/>
+    </div>
     <juiceInfoCard :juice-info="selectedJuice"
       @changeBottleSize="changeBottleSize"/>
-      <ExtraIngredients
-        :juice-info="selectedJuice"
-        :ingredients="ingredients"
-        @changeBottleSize="changeBottleSize"
-        @addIngredient="addIngredient"/>
-      <Footer
+    <ExtraIngredients
+      :juice-info="selectedJuice"
+      :ingredients="ingredients"
+      @changeBottleSize="changeBottleSize"
+      @addIngredient="addIngredient"/>
+    <Footer
       :cartContents="cartContents"
       :selectedJuice="selectedJuice"/>
-
   </div>
 </template>
 
@@ -332,15 +333,81 @@ export default {
         }
       }
 
-    }
+    },
+    handleScroll: function() {
+      // Vars for the things that happen on scrolling
+      const bottleSwiper = document.querySelector('.bottle-swiper-wrap');
+      const juiceBottleHeight = document.querySelector('.juice-bottle.selected').clientHeight;
+      const nav = document.querySelector('#nav');
+
+      // Register the frame
+      var animFrame;
+
+      // Listen for scroll events
+      window.addEventListener('scroll', function ( event ) {
+
+        // If there's an animation frame waiting to run, cancel it
+        if (animFrame) {
+          window.cancelAnimationFrame(animFrame);
+        }
+
+        // Setup the new requestAnimationFrame()
+        animFrame = window.requestAnimationFrame(function () {
+          // Run scroll functions
+          var scrollAmount = window.pageYOffset;
+
+          // Shrink header on scroll
+          // if ( percentScrolled > 90 && !nav.classList.contains('shrink') ) {
+          //   nav.classList.add("shrink");
+          // } else if ( percentScrolled < 90 && (nav.classList.contains('shrink')) ) {
+          //   nav.classList.remove("shrink");
+          // }
+
+          // animate perspective origin for parallax effect on hero image
+          if ( scrollAmount > juiceBottleHeight+150 ) {
+            bottleSwiper.classList.add('scrolled');
+          } else if (scrollAmount < juiceBottleHeight+5) {
+            bottleSwiper.classList.remove('scrolled');
+          }
+
+        });
+
+      }, false);
+    },
+  },
+  mounted: function() {
+    console.log('mounted');
+    this.handleScroll();
   }
 };
 </script>
 
 <style scoped lang="scss">
-.bottle-swiper-wrap {
+.shop-main-wrap {
   padding: 1px 0 0; // this stops margin collapse from the card element
   position: relative;
+  margin: 0 0 200px;
+}
+
+.bottle-swiper-wrap {
+  position: absolute;
+  // top: 70px;
+  // left: 0px;
+  // max-height: 180px;
+  height: 180px;
+  z-index: 100;
+  width: 100%;
+  &.scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    animation: slideDown 0.3s ease-out both;
+  }
+}
+
+@keyframes slideDown {
+  0% {transform: translateY(-400px)}
+  100% { transform: translateY(-100px)}
 }
 
 .juice-bottle {
@@ -351,6 +418,9 @@ export default {
   transform-origin: 50% 20%;
   top: 10px;
   right: 0;
+  .scrolled & {
+    opacity: 0;
+  }
 }
 
 .off-screen-left {
@@ -364,6 +434,11 @@ export default {
 }
 .selected {
   transform: translateX(-200%) scale(1) rotate(0);
+  .scrolled & {
+    transition: transform 2s cubic-bezier(0, 1, 0, 1);
+    transform: translateX(-400%) scale(1) rotate(0);
+    opacity: 1;
+  }
 }
 .right {
   transform: translateX(-80%) scale(0.6) rotate(0);

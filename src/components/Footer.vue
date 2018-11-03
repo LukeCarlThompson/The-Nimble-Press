@@ -51,7 +51,7 @@
       </svg>
       <span class="cart-counter" v-if="cartHasItems">{{this.cartContents.length}}</span>
     </div>
-    <button class="add-to-cart"
+    <button class="add-to-cart btn"
       v-on:click="addToCart"
       v-hammer:press="() => addToCart">
       Add to Cart
@@ -110,23 +110,23 @@ export default {
         .add({
           targets: element,
           translateY: [
-            { value: -10, duration: 300, easing: 'easeOutCubic' },
+            { value: 30, duration: 200, easing: 'easeOutCubic' },
             { value: invertedRect.top, duration: 200, easing: [0.15, 0, 0.2, 0] }
           ],
           translateX: [
-            { value: 0, duration: 300, easing: 'easeOutCubic' },
+            { value: 0, duration: 200, easing: 'easeOutCubic' },
             { value: invertedRect.left, duration: 200, easing: [0.15, 0, 0.2, 0] }
           ],
           rotate: [
-            { value: -20, duration: 300, easing: 'easeOutCubic'},
+            { value: -20, duration: 200, easing: 'easeOutCubic'},
             { value: 0, duration: 50, easing: 'easeOutSine'},
           ],
           scaleX: [
-            { value: 1.1, duration: 300, easing: 'easeOutCubic'},
+            { value: 1.2, duration: 200, easing: 'easeOutCubic'},
             { value: 0.2, duration: 200, easing: 'easeOutSine'},
           ],
           scaleY: [
-            { value: 1.1, duration: 300, easing: 'easeOutCubic'},
+            { value: 1.2, duration: 200, easing: 'easeOutCubic'},
             { value: 0.2, duration: 200, easing: 'easeOutSine'},
           ],
           complete: function() {
@@ -166,8 +166,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../assets/_variables.scss";
+
 .footer {
-  background-color: purple;
+  background-color: $color_brand_purple;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -188,8 +190,7 @@ export default {
   position: absolute;
   top: -10px;
   right: 15px;
-  // background-color: $color_brand_turquoise;
-  background-color: red;
+  background-color: $color_brand_turquoise;
   color: white;
   font-weight: 800;
   padding-top: 6px;

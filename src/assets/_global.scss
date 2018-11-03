@@ -1,0 +1,18 @@
+// file for global styles
+@import "../assets/_variables.scss";
+
+.btn {
+  padding: 1rem 2rem;
+  min-width: 140px;
+  border: 0;
+  border-radius: 100px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  background-color: $color_brand_turquoise;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  &:hover {
+    background-color: darken($color_brand_turquoise, 15%);
+  }
+}

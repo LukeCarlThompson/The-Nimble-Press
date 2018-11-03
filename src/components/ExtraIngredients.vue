@@ -27,7 +27,7 @@
         @pannedLeft="incrementCounter"/>
     </div> -->
     <div>
-      <button class="add-ingredient" v-on:click="addHandler">Add</button>
+      <button class="add-ingredient btn" v-on:click="addHandler">Add</button>
     </div>
 
   </div>
@@ -137,8 +137,8 @@ export default {
 .extra-ingredients-wrap {
   // overflow: hidden; // this stops margin collapse from the card element
   position: relative;
-  min-height: 100vh;
-  border: 2px solid red;
+  // min-height: 100vh;
+  // border: 2px solid red;
 }
 
 .extras-chooser-list {
@@ -167,13 +167,7 @@ export default {
 }
 
 .add-ingredient {
-  padding: 1rem 4rem;
-  border: 0;
-  border-radius: 100px;
-  color: white;
-  font-weight: 700;
-  font-size: 1.2rem;
-  background-color: rgb(107, 173, 165);
+
 }
 
 .off-screen-left {

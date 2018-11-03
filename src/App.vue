@@ -31,6 +31,7 @@ export default {};
 
 <style lang="scss">
 @import "assets/modern-normalize";
+@import "assets/_global.scss";
 
 body {
   background: linear-gradient(to bottom, white, #c6fff2);
