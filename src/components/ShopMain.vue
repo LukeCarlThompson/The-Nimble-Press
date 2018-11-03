@@ -376,7 +376,6 @@ export default {
     },
   },
   mounted: function() {
-    console.log('mounted');
     this.handleScroll();
   }
 };
