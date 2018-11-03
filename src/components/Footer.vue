@@ -49,7 +49,7 @@
           </g>
         </g>
       </svg>
-      <span class="cart-counter">{{this.cartContents.length}}</span>
+      <span class="cart-counter" v-if="cartHasItems">{{this.cartContents.length}}</span>
     </div>
     <button class="add-to-cart"
       v-on:click="addToCart"
@@ -70,6 +70,9 @@ export default {
     selectedJuice: Object
   },
   computed: {
+    cartHasItems: function() {
+      return this.cartContents.length >= 1;
+    }
 
   },
   watch: {
@@ -98,6 +101,7 @@ export default {
         }
         // Set the transform origin point so it works with the calculated co-ordinates
         element.style.transformOrigin = 'left top';
+        element.style.zIndex = '100';
         
         // Apply transform to sync the from class back to the 'to' classes position
         // element.style.transform = 'translateX(' + invertedRect.left + 'px) translateY(' + invertedRect.top + 'px) scaleX(' + invertedRect.width + ') scaleY(' + invertedRect.height + ')';
@@ -175,22 +179,30 @@ export default {
 
 .cart-icon {
   position: relative;
-  margin-top: -40px;
+  // margin-top: -40px;
   svg {
-    height: 60px;
+    height: 40px;
   }
 }
 .cart-counter {
   position: absolute;
   top: -10px;
-  right: 3px;
-  background-color: green;
+  right: 15px;
+  // background-color: $color_brand_turquoise;
+  background-color: red;
   color: white;
   font-weight: 800;
   padding-top: 6px;
   height: 30px;
   width: 30px;
   border-radius: 100px;
+  animation: scaleIn 0.2s ease-out;
+}
+
+@keyframes scaleIn {
+  0%{transform: scale(0.5); opacity: 0}
+  90%{transform: scale(1.1); opacity: 1}
+  100%{transform: scale(1); opacity: 1}
 }
 
 </style>
