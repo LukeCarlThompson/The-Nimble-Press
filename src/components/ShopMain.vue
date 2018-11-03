@@ -14,7 +14,9 @@
         :ingredients="ingredients"
         @changeBottleSize="changeBottleSize"
         @addIngredient="addIngredient"/>
-      <Footer/>
+      <Footer
+      :cartContents="cartContents"
+      :selectedJuice="selectedJuice"/>
 
   </div>
 </template>
@@ -27,7 +29,7 @@ import ExtraIngredients from "@/components/ExtraIngredients.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
-  name: "BottleSwiper",
+  name: "ShopMain",
   components: {
     JuiceBottle,
     JuiceInfoCard,
@@ -249,7 +251,8 @@ export default {
             selected: false
           }
         ],
-      }
+      },
+      cartContents: []
     };
   },
   methods: {
@@ -336,7 +339,7 @@ export default {
 
 <style scoped lang="scss">
 .bottle-swiper-wrap {
-  overflow: hidden; // this stops margin collapse from the card element
+  padding: 1px 0 0; // this stops margin collapse from the card element
   position: relative;
 }
 

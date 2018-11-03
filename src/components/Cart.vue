@@ -9,7 +9,7 @@
 export default {
   name: "Cart",
   props: {
-    contents: Array
+    cartContents: Array
   },
   computed: {
 
