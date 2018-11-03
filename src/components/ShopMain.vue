@@ -401,7 +401,7 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
-    animation: slideDown 0.3s ease-out both;
+    animation: slideDown 1s cubic-bezier(0, 1, 0, 1) both;
   }
 }
 
@@ -434,8 +434,9 @@ export default {
 }
 .selected {
   transform: translateX(-200%) scale(1) rotate(0);
+  z-index: 10;
   .scrolled & {
-    transition: transform 2s cubic-bezier(0, 1, 0, 1);
+    transition: transform 0.2s cubic-bezier(0, 1, 0, 1);
     transform: translateX(-400%) scale(1) rotate(0);
     opacity: 1;
   }
