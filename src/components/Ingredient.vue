@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     backgroundImage: function() {
-      return "/images/" + this.ingredient.name.replace(/\s+/, "") + ".svg";
+      return "/images/" + this.ingredient.name.replace(/\s+/, "").toLowerCase() + ".svg";
     }
   },
   watch: {},
