@@ -7,7 +7,7 @@
         :key="juiceInfo.name" 
         class="juice-info">
         <h1 class="juice-title">{{ juiceInfo.name }}</h1>
-        <span class="price">$4.95</span>
+        <span class="price">{{this.price}}</span>
         <div class="size-chooser">
           <form id="size-form">
             <input type="radio" name="small size" id="small-size" value="0" v-model="juiceInfo.size" v-on:input="changeBottleSize" />
@@ -44,13 +44,22 @@
 <script>
 export default {
   name: "JuiceInfoCard",
-  // data: function() {
-  //   return {
-  //     rangeValue: 2
-  //   }
-  // },
   props: {
     juiceInfo: Object
+  },
+  computed: {
+    price: function() {
+      let thePrice;
+      console.log(this.juiceInfo.size);
+      if(this.juiceInfo.size == 2) {
+        thePrice = '$5.95';
+      } else if(this.juiceInfo.size == 1) {
+        thePrice = '$4.95';
+      } else if(this.juiceInfo.size == 0) {
+        thePrice = '$3.45';
+      }
+      return thePrice;
+    }
   },
   methods: {
     changeBottleSize: function() {
@@ -160,7 +169,6 @@ input[type="radio"] {
 }
 
 .juice-ingredient-wrap {
-  // border-top: 1px solid rgb(202, 202, 202);
   position: relative;
   padding: 15px 0;
   &:after {
@@ -180,9 +188,6 @@ input[type="radio"] {
   font-weight: 600;
   display: flex;
   align-items: center;
-  // position: relative;
-  // position: relative;
-  // display: block;
 }
 
 .remove-icon {
@@ -193,6 +198,7 @@ input[type="radio"] {
   margin-left: auto;
   display: inline-block;
   position: relative;
+  cursor: pointer;
   &:after {
     content: "";
     display: block;

@@ -9,6 +9,7 @@
           v-for="(item, i) in this.cartContents"
           :key="item.name + i">
           {{item.name}}
+          <span class="price">{{price(item.size)}}</span>
         </li>
       </ul>
     </div>
@@ -34,7 +35,18 @@ export default {
 
   },
   methods: {
-
+    price: function(size) {
+      let thePrice;
+      console.log(size);
+      if(size == 2) {
+        thePrice = '$5.95';
+      } else if(size == 1) {
+        thePrice = '$4.95';
+      } else if(size == 0) {
+        thePrice = '$3.45';
+      }
+      return thePrice;
+    }
   }
 };
 </script>
@@ -57,8 +69,16 @@ export default {
     li {
       list-style: none;
       margin: 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgb(204, 204, 204);
     }
   }
+}
+.price {
+  font-weight: 600;
+  font-size: 20px;
+  float: right;
+  color: rgb(87, 87, 87);
 }
 
 </style>

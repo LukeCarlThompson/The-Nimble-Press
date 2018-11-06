@@ -103,10 +103,10 @@ export default {
           }
         },
         {
-          name: "Pomegranite Twist",
+          name: "Pomegranate Twist",
           size: "2",
           selected: false,
-          ingredients: ["Pomegranite", "Green Apple", "Lime"],
+          ingredients: ["Pomegranate", "Green Apple", "Lime"],
           color: {
             top: "#A664B1",
             bottom: "#473E9D"
@@ -162,12 +162,7 @@ export default {
             selected: false
           },
           {
-            name: "Pomegranite",
-            color: "#DF0B2B",
-            selected: false
-          },
-          {
-            name: "Red Grape",
+            name: "Pomegranate",
             color: "#DF0B2B",
             selected: false
           },
@@ -182,17 +177,7 @@ export default {
             selected: false
           },
           {
-            name: "Mulberry",
-            color: "#DF0B2B",
-            selected: false
-          },
-          {
             name: "Pear",
-            color: "#DF0B2B",
-            selected: false
-          },
-          {
-            name: "Kiwi Fruit",
             color: "#DF0B2B",
             selected: false
           },
@@ -404,7 +389,8 @@ export default {
           offset: '-=200',
           complete: function() {
             // remove left over inline styles so the swipe transformations work correctly
-            element.style.cssText= "";
+            // element.style.cssText= "";
+            element.style.transformOrigin = '';
           }
         });
       };

@@ -1,9 +1,10 @@
 <template>
   <div 
     :class="['ingredient', bottlePosition]">
-    <div class="ingredient-img" 
+    <div class="ingredient-img"
+      :style="{backgroundImage: 'url(' + backgroundImage + ')'}"
       v-hammer:pan="onPan">
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 56.673 56.673" style="enable-background:new 0 0 56.673 56.673;" xml:space="preserve">
+      <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 56.673 56.673" style="enable-background:new 0 0 56.673 56.673;" xml:space="preserve">
         <g>
           <path style="fill:#D13834;" d="M31.483,16.213c-2.065,0.511-4.227,0.511-6.292,0c-10.756-2.66-19.762-1.64-19.658,18.643
             c0.053,10.39,9.783,23.862,20.009,21.557c1.834-0.413,3.755-0.413,5.589,0c10.226,2.305,19.956-11.167,20.009-21.557
@@ -19,7 +20,7 @@
           <path style="fill:#659C35;" d="M27.305,13.04l0.609-4.086c0.643-4.315,4.031-7.703,8.346-8.346L40.345,0l-0.609,4.086
             c-0.643,4.315-4.031,7.703-8.346,8.346L27.305,13.04z"/>
         </g>
-      </svg>
+      </svg> -->
     </div>
     <transition name="fade">
       <p class="ingredient-name" v-if="this.ingredient.selected">{{this.ingredient.name}}</p>
@@ -37,7 +38,9 @@ export default {
     bottlePosition: String
   },
   computed: {
-
+    backgroundImage: function() {
+      return '/images/'+ this.ingredient.name.replace(/\s+/, "")  +'.svg';
+    }
   },
   watch: {
 
@@ -101,6 +104,9 @@ export default {
     transform-origin: 50% 200%;
     // background-color: pink;
     // border-radius: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
     @media screen and (max-width: 530px) {
       height: 50vw;
     }

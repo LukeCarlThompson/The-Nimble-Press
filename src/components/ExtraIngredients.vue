@@ -1,13 +1,13 @@
 <template>
   <div class="extra-ingredients-wrap">
     <h1>Extras</h1>
-    <select class="extras-chooser-list" v-on:change="selectedIngredientsList" value="fruit">
+    <!-- <select class="extras-chooser-list" v-on:change="selectedIngredientsList" value="fruit">
       <option v-for="(ingredient, key) in ingredients"
         :key="key"
         :value="key">
         {{ key }}
       </option>
-    </select>
+    </select> -->
     <div class="ingredients-swiper-wrap">
       <Ingredient
         v-for="(fruit, i) in ingredients.fruit"
@@ -117,88 +117,7 @@ export default {
       // filter through the ingredients to find the one that is selected
       let selectedIngredient = this.ingredients.fruit.filter(fruit => fruit.selected == true );
       // filter creates an array, so $emit the first value of the new array up to the parent component
-      // setTimeout(()=>this.$emit("addIngredient", selectedIngredient[0]), 500);
-
       this.$emit("addIngredient", selectedIngredient[0]);
-
-      // let selectedIngredientEl = document.querySelector('.ingredient.selected .ingredient-img');
-      // let selectedJuice = document.querySelector('.juice-bottle.selected svg ellipse');
-
-      // var flipAnimTo = function(element, to){
-      //   // Get 'first' position
-      //   var firstRect = element.getBoundingClientRect();
-      //   // Get the 'to' position
-      //   var lastRect = to.getBoundingClientRect();
-      //   // Create object with the firstRect values minus the lastRect values
-      //   // To invert the transform
-      //   var invertedRect = {
-      //     top: lastRect.top - firstRect.top,
-      //     left: lastRect.left - firstRect.left,
-      //     width: lastRect.width / firstRect.width,
-      //     height: lastRect.height / firstRect.height
-      //   }
-      //   // Set the transform origin point so it works with the calculated co-ordinates
-      //   element.style.transformOrigin = 'left top';
-      //   element.style.zIndex = '100';
-
-      //   const ingredientToJuice = anime.timeline()
-      //   .add({
-      //     targets: element,
-      //     translateY: [
-      //       { value: 30, duration: 200, easing: 'easeOutCubic' },
-      //       { value: invertedRect.top, duration: 200, easing: [0.15, 0, 0.2, 0] }
-      //     ],
-      //     translateX: [
-      //       { value: 0, duration: 200, easing: 'easeOutCubic' },
-      //       { value: invertedRect.left, duration: 200, easing: [0.15, 0, 0.2, 0] }
-      //     ],
-      //     rotate: [
-      //       { value: -20, duration: 200, easing: 'easeOutCubic'},
-      //       { value: 0, duration: 50, easing: 'easeOutSine'},
-      //     ],
-      //     scaleX: [
-      //       { value: 1.2, duration: 200, easing: 'easeOutCubic'},
-      //       { value: 0.2, duration: 200, easing: 'easeOutSine'},
-      //     ],
-      //     scaleY: [
-      //       { value: 1.2, duration: 200, easing: 'easeOutCubic'},
-      //       { value: 0.2, duration: 200, easing: 'easeOutSine'},
-      //     ],
-      //     complete: function() {
-      //       element.style.transformOrigin = '50%';
-      //       element.style.opacity = '0';
-      //       element.style.transform = 'translateX(0px) translateY(0px)';
-      //     },
-      //   })
-      //   .add({
-      //     targets: '.juice-bottle.selected svg',
-      //     translateX: [
-      //       { value: -20, duration: 50, easing: 'easeOutCubic' },
-      //       { value: 0, duration: 500 }
-      //     ],
-      //     translateY: [
-      //       { value: -30, duration: 50, easing: 'easeOutCubic' },
-      //       { value: 0, duration: 500 }
-      //     ],
-      //     rotate: [
-      //       { value: -5, duration: 50, easing: 'easeOutCubic'},
-      //       { value: 0, duration: 500},
-      //     ],
-      //   })
-      //   .add({
-      //     targets: element,
-      //     scale: [0.9, 1],
-      //     opacity: 1,
-      //     duration: 500,
-      //     offset: '-=200',
-      //     complete: function() {
-      //       // remove left over inline styles so the swipe transformations work correctly
-      //       element.style.cssText= "";
-      //     }
-      //   });
-      // };
-
-      // flipAnimTo(selectedIngredientEl, selectedJuice);
 
     }
   }
