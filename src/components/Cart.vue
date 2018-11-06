@@ -2,14 +2,16 @@
   <div class="cart-wrap">
     <h1>Cart</h1>
     <h2 v-if="!cartHasItems">Your cart is currenly Empty</h2>
-    <div v-if="cartHasItems" class="cart-list-wrap">
+    <div 
+      v-if="cartHasItems" 
+      class="cart-list-wrap">
       <h2>Your Items</h2>
       <ul>
         <li
           v-for="(item, i) in this.cartContents"
           :key="item.name + i">
-          {{item.name}}
-          <span class="price">{{price(item.size)}}</span>
+          {{ item.name }}
+          <span class="price">{{ price(item.size) }}</span>
         </li>
       </ul>
     </div>
@@ -17,7 +19,6 @@
 </template>
 
 <script>
-
 export default {
   name: "Cart",
   props: {
@@ -25,25 +26,23 @@ export default {
   },
   computed: {
     cartContents: function() {
-      return this.$route.params.cartContents
+      return this.$route.params.cartContents;
     },
     cartHasItems: function() {
       return this.cartContents;
     }
   },
-  watch: {
-
-  },
+  watch: {},
   methods: {
     price: function(size) {
       let thePrice;
       console.log(size);
-      if(size == 2) {
-        thePrice = '$5.95';
-      } else if(size == 1) {
-        thePrice = '$4.95';
-      } else if(size == 0) {
-        thePrice = '$3.45';
+      if (size == 2) {
+        thePrice = "$5.95";
+      } else if (size == 1) {
+        thePrice = "$4.95";
+      } else if (size == 0) {
+        thePrice = "$3.45";
       }
       return thePrice;
     }
@@ -52,7 +51,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 .cart-wrap {
   box-shadow: 0 10px 40px rgba(10, 25, 105, 0.2),
     0 5px 20px rgba(10, 25, 105, 0.1);
@@ -80,5 +78,4 @@ export default {
   float: right;
   color: rgb(87, 87, 87);
 }
-
 </style>

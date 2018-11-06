@@ -18,7 +18,9 @@
         @pannedLeft="incrementCounter"/>
     </div>
     <div>
-      <button class="add-ingredient btn" v-on:click="addHandler">Add</button>
+      <button 
+        class="add-ingredient btn" 
+        @click="addHandler">Add</button>
     </div>
 
   </div>
@@ -31,7 +33,11 @@ import Ingredient from "@/components/Ingredient.vue";
 export default {
   name: "ExtraIngredients",
   components: {
-    Ingredient,
+    Ingredient
+  },
+  props: {
+    ingredients: Object,
+    selectedJuice: Object
   },
   data: function() {
     return {
@@ -47,25 +53,23 @@ export default {
       ]
     };
   },
-  props: {
-    ingredients: Object,
-    selectedJuice: Object,
-  },
   computed: {
     // selectedIngredientsList: function() {
     //   let ingredientsType = document.querySelector('.extras-chooser-list').value;
-
     //   // console.log('this.ingredients[ingredientsType]', this.ingredients[ingredientsType])
-      
     //   return this.ingredients[ingredientsType];
     // },
   },
   methods: {
     selectedIngredientsList: function() {
-      let ingredientsType = document.querySelector('.extras-chooser-list').value;
+      let ingredientsType = document.querySelector(".extras-chooser-list")
+        .value;
 
-      console.log('this.ingredients[ingredientsType]', this.ingredients[ingredientsType])
-      
+      console.log(
+        "this.ingredients[ingredientsType]",
+        this.ingredients[ingredientsType]
+      );
+
       return this.ingredients[ingredientsType];
     },
     incrementCounter: function() {
@@ -115,10 +119,11 @@ export default {
     },
     addHandler: function() {
       // filter through the ingredients to find the one that is selected
-      let selectedIngredient = this.ingredients.fruit.filter(fruit => fruit.selected == true );
+      let selectedIngredient = this.ingredients.fruit.filter(
+        fruit => fruit.selected == true
+      );
       // filter creates an array, so $emit the first value of the new array up to the parent component
       this.$emit("addIngredient", selectedIngredient[0]);
-
     }
   }
 };
@@ -155,7 +160,6 @@ export default {
 }
 
 .add-ingredient {
-
 }
 
 .off-screen-left {

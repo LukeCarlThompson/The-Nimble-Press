@@ -1,9 +1,10 @@
 <template>
   <div 
     :class="['ingredient', bottlePosition]">
-    <div class="ingredient-img"
+    <div 
+      v-hammer:pan="onPan"
       :style="{backgroundImage: 'url(' + backgroundImage + ')'}"
-      v-hammer:pan="onPan">
+      class="ingredient-img">
       <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 56.673 56.673" style="enable-background:new 0 0 56.673 56.673;" xml:space="preserve">
         <g>
           <path style="fill:#D13834;" d="M31.483,16.213c-2.065,0.511-4.227,0.511-6.292,0c-10.756-2.66-19.762-1.64-19.658,18.643
@@ -23,7 +24,9 @@
       </svg> -->
     </div>
     <transition name="fade">
-      <p class="ingredient-name" v-if="this.ingredient.selected">{{this.ingredient.name}}</p>
+      <p 
+        v-if="this.ingredient.selected" 
+        class="ingredient-name">{{ this.ingredient.name }}</p>
     </transition>
   </div>
 </template>
@@ -39,12 +42,10 @@ export default {
   },
   computed: {
     backgroundImage: function() {
-      return '/images/'+ this.ingredient.name.replace(/\s+/, "")  +'.svg';
+      return "/images/" + this.ingredient.name.replace(/\s+/, "") + ".svg";
     }
   },
-  watch: {
-
-  },
+  watch: {},
   methods: {
     onPan: function(e) {
       // select the svg inside our component not the whole component
@@ -137,10 +138,12 @@ export default {
   stop-color: var(--bottom-color);
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>

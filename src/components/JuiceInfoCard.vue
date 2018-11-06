@@ -7,28 +7,47 @@
         :key="juiceInfo.name" 
         class="juice-info">
         <h1 class="juice-title">{{ juiceInfo.name }}</h1>
-        <span class="price">{{this.price}}</span>
+        <span class="price">{{ this.price }}</span>
         <div class="size-chooser">
           <form id="size-form">
-            <input type="radio" name="small size" id="small-size" value="0" v-model="juiceInfo.size" v-on:input="changeBottleSize" />
+            <input 
+              id="small-size" 
+              v-model="juiceInfo.size" 
+              type="radio" 
+              name="small size" 
+              value="0" 
+              @input="changeBottleSize" >
             <label for="small-size">Sml<br><span>275ml</span></label>
-            <input type="radio" name="medium size" id="medium-size" value="1" v-model="juiceInfo.size" v-on:input="changeBottleSize" />
+            <input 
+              id="medium-size" 
+              v-model="juiceInfo.size" 
+              type="radio" 
+              name="medium size" 
+              value="1" 
+              @input="changeBottleSize" >
             <label for="medium-size">Med<br><span>350ml</span></label>
-            <input type="radio" name="large size" id="large-size" value="2" v-model="juiceInfo.size" v-on:input="changeBottleSize" />
+            <input 
+              id="large-size" 
+              v-model="juiceInfo.size" 
+              type="radio" 
+              name="large size" 
+              value="2" 
+              @input="changeBottleSize" >
             <label for="large-size">Lrg<br><span>500ml</span></label>
           </form>
         </div>
         <ul>
           <transition-group name="ingredients-list">
-            <div class="juice-ingredient-wrap"
-              v-for="(juice, i) in juiceInfo.ingredients" 
-              :key="juice" >
+            <div 
+              v-for="(juice, i) in juiceInfo.ingredients"
+              :key="juice" 
+              class="juice-ingredient-wrap" >
               <li class="juice-ingredient">
                 {{ juice }}
-                <span class="remove-icon"
-                  v-on:click="removeIngredient(i)"
-                  v-hammer:press="() => removeIngredient(i)">
-                </span>
+                <span 
+                  v-hammer:press="() => removeIngredient(i)"
+                  class="remove-icon"
+                  @click="removeIngredient(i)"/>
               </li>
             </div>
           </transition-group>
@@ -51,12 +70,12 @@ export default {
     price: function() {
       let thePrice;
       console.log(this.juiceInfo.size);
-      if(this.juiceInfo.size == 2) {
-        thePrice = '$5.95';
-      } else if(this.juiceInfo.size == 1) {
-        thePrice = '$4.95';
-      } else if(this.juiceInfo.size == 0) {
-        thePrice = '$3.45';
+      if (this.juiceInfo.size == 2) {
+        thePrice = "$5.95";
+      } else if (this.juiceInfo.size == 1) {
+        thePrice = "$4.95";
+      } else if (this.juiceInfo.size == 0) {
+        thePrice = "$3.45";
       }
       return thePrice;
     }
@@ -69,7 +88,6 @@ export default {
     removeIngredient: function(i) {
       this.juiceInfo.ingredients.splice(i, 1);
       // this.delete(this.juiceInfo.ingredients, i);
-
     }
   }
 };
@@ -212,11 +230,13 @@ input[type="radio"] {
   }
 }
 
-.ingredients-list-enter-active, .ingredients-list-leave-active {
+.ingredients-list-enter-active,
+.ingredients-list-leave-active {
   transition: all 0.2s ease-in;
   // position: absolute;
 }
-.ingredients-list-enter, .ingredients-list-leave-to {
+.ingredients-list-enter,
+.ingredients-list-leave-to {
   transform: translateX(-20%);
   opacity: 0;
 }
@@ -226,8 +246,6 @@ input[type="radio"] {
 .ingredients-list-leave-active {
   position: absolute;
 }
-
-
 
 .slide-fade-enter-active {
   transition: all 1s cubic-bezier(0, 1, 0, 1);
