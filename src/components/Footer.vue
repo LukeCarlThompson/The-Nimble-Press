@@ -212,9 +212,6 @@ export default {
         element.style.transformOrigin = "left top";
         element.style.zIndex = "100";
 
-        // Apply transform to sync the from class back to the 'to' classes position
-        // element.style.transform = 'translateX(' + invertedRect.left + 'px) translateY(' + invertedRect.top + 'px) scaleX(' + invertedRect.width + ') scaleY(' + invertedRect.height + ')';
-
         const juiceToCart = anime
           .timeline()
           .add({

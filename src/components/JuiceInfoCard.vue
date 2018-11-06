@@ -7,7 +7,7 @@
         :key="juiceInfo.name" 
         class="juice-info">
         <h1 class="juice-title">{{ juiceInfo.name }}</h1>
-        <span class="price">{{ this.price }}</span>
+        <span class="price">{{ price }}</span>
         <div class="size-chooser">
           <form id="size-form">
             <input 
@@ -69,7 +69,6 @@ export default {
   computed: {
     price: function() {
       let thePrice;
-      console.log(this.juiceInfo.size);
       if (this.juiceInfo.size == 2) {
         thePrice = "$5.95";
       } else if (this.juiceInfo.size == 1) {
@@ -87,7 +86,6 @@ export default {
     },
     removeIngredient: function(i) {
       this.juiceInfo.ingredients.splice(i, 1);
-      // this.delete(this.juiceInfo.ingredients, i);
     }
   }
 };
