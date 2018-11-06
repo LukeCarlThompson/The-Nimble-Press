@@ -17,15 +17,6 @@
         @pannedRight="decrementCounter"
         @pannedLeft="incrementCounter"/>
     </div>
-    <!-- <div class="ingredients-swiper-wrap">
-      <Ingredient
-        v-for="(vegetable, i) in ingredients.vegetables"
-        :bottle-position="bottlePosition(i)"
-        :ingredient="ingredients.vegetables[i]"
-        :key="vegetable.name"
-        @pannedRight="decrementCounter(vegetable)"
-        @pannedLeft="incrementCounter"/>
-    </div> -->
     <div>
       <button class="add-ingredient btn" v-on:click="addHandler">Add</button>
     </div>
@@ -53,12 +44,12 @@ export default {
         "left",
         "far-left",
         "off-screen-left"
-      ],
-      selectedJuice: Object,
+      ]
     };
   },
   props: {
-    ingredients: Object
+    ingredients: Object,
+    selectedJuice: Object,
   },
   computed: {
     // selectedIngredientsList: function() {
@@ -87,8 +78,7 @@ export default {
       }
     },
     decrementCounter: function(item) {
-      console.log(item);
-      // This check stopes the last bottle from being swiped past the center position
+      // This check stops the last bottle from being swiped past the center position
       if (this.counter <= -(this.ingredients.fruit.length - 4)) {
         // console.log("decrement limit reached");
         return;
@@ -127,7 +117,89 @@ export default {
       // filter through the ingredients to find the one that is selected
       let selectedIngredient = this.ingredients.fruit.filter(fruit => fruit.selected == true );
       // filter creates an array, so $emit the first value of the new array up to the parent component
+      // setTimeout(()=>this.$emit("addIngredient", selectedIngredient[0]), 500);
+
       this.$emit("addIngredient", selectedIngredient[0]);
+
+      // let selectedIngredientEl = document.querySelector('.ingredient.selected .ingredient-img');
+      // let selectedJuice = document.querySelector('.juice-bottle.selected svg ellipse');
+
+      // var flipAnimTo = function(element, to){
+      //   // Get 'first' position
+      //   var firstRect = element.getBoundingClientRect();
+      //   // Get the 'to' position
+      //   var lastRect = to.getBoundingClientRect();
+      //   // Create object with the firstRect values minus the lastRect values
+      //   // To invert the transform
+      //   var invertedRect = {
+      //     top: lastRect.top - firstRect.top,
+      //     left: lastRect.left - firstRect.left,
+      //     width: lastRect.width / firstRect.width,
+      //     height: lastRect.height / firstRect.height
+      //   }
+      //   // Set the transform origin point so it works with the calculated co-ordinates
+      //   element.style.transformOrigin = 'left top';
+      //   element.style.zIndex = '100';
+
+      //   const ingredientToJuice = anime.timeline()
+      //   .add({
+      //     targets: element,
+      //     translateY: [
+      //       { value: 30, duration: 200, easing: 'easeOutCubic' },
+      //       { value: invertedRect.top, duration: 200, easing: [0.15, 0, 0.2, 0] }
+      //     ],
+      //     translateX: [
+      //       { value: 0, duration: 200, easing: 'easeOutCubic' },
+      //       { value: invertedRect.left, duration: 200, easing: [0.15, 0, 0.2, 0] }
+      //     ],
+      //     rotate: [
+      //       { value: -20, duration: 200, easing: 'easeOutCubic'},
+      //       { value: 0, duration: 50, easing: 'easeOutSine'},
+      //     ],
+      //     scaleX: [
+      //       { value: 1.2, duration: 200, easing: 'easeOutCubic'},
+      //       { value: 0.2, duration: 200, easing: 'easeOutSine'},
+      //     ],
+      //     scaleY: [
+      //       { value: 1.2, duration: 200, easing: 'easeOutCubic'},
+      //       { value: 0.2, duration: 200, easing: 'easeOutSine'},
+      //     ],
+      //     complete: function() {
+      //       element.style.transformOrigin = '50%';
+      //       element.style.opacity = '0';
+      //       element.style.transform = 'translateX(0px) translateY(0px)';
+      //     },
+      //   })
+      //   .add({
+      //     targets: '.juice-bottle.selected svg',
+      //     translateX: [
+      //       { value: -20, duration: 50, easing: 'easeOutCubic' },
+      //       { value: 0, duration: 500 }
+      //     ],
+      //     translateY: [
+      //       { value: -30, duration: 50, easing: 'easeOutCubic' },
+      //       { value: 0, duration: 500 }
+      //     ],
+      //     rotate: [
+      //       { value: -5, duration: 50, easing: 'easeOutCubic'},
+      //       { value: 0, duration: 500},
+      //     ],
+      //   })
+      //   .add({
+      //     targets: element,
+      //     scale: [0.9, 1],
+      //     opacity: 1,
+      //     duration: 500,
+      //     offset: '-=200',
+      //     complete: function() {
+      //       // remove left over inline styles so the swipe transformations work correctly
+      //       element.style.cssText= "";
+      //     }
+      //   });
+      // };
+
+      // flipAnimTo(selectedIngredientEl, selectedJuice);
+
     }
   }
 };
@@ -135,10 +207,7 @@ export default {
 
 <style scoped lang="scss">
 .extra-ingredients-wrap {
-  // overflow: hidden; // this stops margin collapse from the card element
   position: relative;
-  // min-height: 100vh;
-  // border: 2px solid red;
 }
 
 .extras-chooser-list {
@@ -156,7 +225,7 @@ export default {
   height: 280px;
 }
 
-.juice-bottle {
+.ingredient {
   width: 20%;
   display: block;
   position: absolute;

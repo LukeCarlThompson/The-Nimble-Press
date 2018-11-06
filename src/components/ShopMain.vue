@@ -12,7 +12,7 @@
     <juiceInfoCard :juice-info="selectedJuice"
       @changeBottleSize="changeBottleSize"/>
     <ExtraIngredients
-      :juice-info="selectedJuice"
+      :selectedJuice="selectedJuice"
       :ingredients="ingredients"
       @changeBottleSize="changeBottleSize"
       @addIngredient="addIngredient"/>
@@ -28,6 +28,8 @@ import JuiceBottle from "@/components/JuiceBottle.vue";
 import JuiceInfoCard from "@/components/JuiceInfoCard.vue";
 import ExtraIngredients from "@/components/ExtraIngredients.vue";
 import Footer from "@/components/Footer.vue";
+
+import anime from "animejs";
 
 export default {
   name: "ShopMain",
@@ -325,13 +327,87 @@ export default {
       } else if(duplicateIngredient()) {
         alert('Juice already has this ingredient');
       } else {
-        for(var i = 0; this.juices.length > i; i++) {
-          if (this.juices[i].selected == true) {
-            this.juices[i].selected = true;
-            this.juices[i].ingredients.push(ingredient.name)
-          }
-        }
+        this.selectedJuice.ingredients.push(ingredient.name);
+
+        let selectedIngredientEl = document.querySelector('.ingredient.selected .ingredient-img');
+        let selectedJuice = document.querySelector('.juice-bottle.selected svg ellipse');
+        animIngredientToJuice(selectedIngredientEl, selectedJuice);
       }
+
+
+      function animIngredientToJuice(element, to){
+        // Get 'first' position
+        var firstRect = element.getBoundingClientRect();
+        // Get the 'to' position
+        var lastRect = to.getBoundingClientRect();
+        // Create object with the firstRect values minus the lastRect values
+        // To invert the transform
+        var invertedRect = {
+          top: lastRect.top - firstRect.top,
+          left: lastRect.left - firstRect.left,
+          width: lastRect.width / firstRect.width,
+          height: lastRect.height / firstRect.height
+        }
+        // Set the transform origin point so it works with the calculated co-ordinates
+        element.style.transformOrigin = 'left top';
+        element.style.zIndex = '100';
+
+        const ingredientToJuice = anime.timeline()
+        .add({
+          targets: element,
+          translateY: [
+            { value: 30, duration: 200, easing: 'easeOutCubic' },
+            { value: invertedRect.top, duration: 200, easing: [0.15, 0, 0.2, 0] }
+          ],
+          translateX: [
+            { value: 0, duration: 200, easing: 'easeOutCubic' },
+            { value: invertedRect.left, duration: 200, easing: [0.15, 0, 0.2, 0] }
+          ],
+          rotate: [
+            { value: -20, duration: 200, easing: 'easeOutCubic'},
+            { value: 0, duration: 50, easing: 'easeOutSine'},
+          ],
+          scaleX: [
+            { value: 1.2, duration: 200, easing: 'easeOutCubic'},
+            { value: 0.2, duration: 200, easing: 'easeOutSine'},
+          ],
+          scaleY: [
+            { value: 1.2, duration: 200, easing: 'easeOutCubic'},
+            { value: 0.2, duration: 200, easing: 'easeOutSine'},
+          ],
+          complete: function() {
+            element.style.transformOrigin = '50%';
+            element.style.opacity = '0';
+            element.style.transform = 'translateX(0px) translateY(0px)';
+          },
+        })
+        .add({
+          targets: '.juice-bottle.selected svg',
+          translateX: [
+            { value: -20, duration: 50, easing: 'easeOutCubic' },
+            { value: 0, duration: 500 }
+          ],
+          translateY: [
+            { value: -30, duration: 50, easing: 'easeOutCubic' },
+            { value: 0, duration: 500 }
+          ],
+          rotate: [
+            { value: -5, duration: 50, easing: 'easeOutCubic'},
+            { value: 0, duration: 500},
+          ],
+        })
+        .add({
+          targets: element,
+          scale: [0.9, 1],
+          opacity: 1,
+          duration: 500,
+          offset: '-=200',
+          complete: function() {
+            // remove left over inline styles so the swipe transformations work correctly
+            element.style.cssText= "";
+          }
+        });
+      };
 
     },
     handleScroll: function() {
