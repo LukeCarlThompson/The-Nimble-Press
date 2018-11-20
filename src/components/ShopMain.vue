@@ -196,11 +196,6 @@ export default {
             name: "Watermelon",
             color: "#DF0B2B",
             selected: false
-          },
-          {
-            name: "Rockmelon",
-            color: "#DF0B2B",
-            selected: false
           }
         ],
         vegetables: [
@@ -465,6 +460,7 @@ export default {
   padding: 1px 0 0; // this stops margin collapse from the card element
   position: relative;
   margin: 0 0 200px;
+  overflow: hidden;
 }
 
 .bottle-swiper-wrap {
